@@ -1,0 +1,13 @@
+[package]
+name = "docmod"
+version = "0.1.0"
+authors = ["Anders Evensen"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+darling = "0.12.2"
+syn = {version="1.0.60", default-features=false, features=["derive", "parsing", "proc-macro"]}
+uuid = {version="0.8.2", default-features=false, features=["v4"]}
