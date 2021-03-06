@@ -21,8 +21,7 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
-    #- uses: nanasess/setup-chromedriver@master
-    #- run: chromedriver --port=4444 --headless &
+    - uses: browser-actions/setup-firefox@latest
     - uses: browser-actions/setup-geckodriver@latest
     - run: geckodriver --port=4444 &
     - uses: actions-rs/toolchain@v1
