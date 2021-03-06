@@ -21,6 +21,8 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
+    - uses: browser-actions/setup-geckodriver@latest
+    - run: geckodriver --port=4444
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}

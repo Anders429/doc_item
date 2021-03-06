@@ -49,7 +49,7 @@ async fn test_semi_transparent_item(client: &mut Client, link_text: &str) -> Res
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Connect to webdriver instance that is listening on port 4444
     let mut client = ClientBuilder::native()
-        .connect("http://localhost:9515")
+        .connect("http://localhost:4444")
         .await?;
         
     let base_url = current_dir().unwrap().join(Path::new("../test_target/target/doc/test_target"));
