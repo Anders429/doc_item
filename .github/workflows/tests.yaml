@@ -29,7 +29,7 @@ jobs:
     - uses: nanasess/setup-chromedriver@master
     - name: Install latest Google Chrome
       run: wget -q https://script.install.devinsideyou.com/google-chrome && chmod +x google-chrome
-    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage &
+    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage --binary=$(pwd)/vendor/bin:${PATH} &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
