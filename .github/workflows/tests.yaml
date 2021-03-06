@@ -1,0 +1,35 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  frontend-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - nightly
+          - 1.50.0
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: ${{ matrix.rust }}
+        override: true
+    - uses: actions-rs/cargo@v1
+      working-directory: ./ci/frontend/test_target
+      with:
+        command: doc
+    - uses: actions-rs/cargo@v1
+      working-directory: ./ci/frontend/doc_ui_test
+      with:
+        command: run
