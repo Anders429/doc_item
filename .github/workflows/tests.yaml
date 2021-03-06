@@ -21,8 +21,11 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
-    - uses: browser-actions/setup-geckodriver@latest
-    - run: geckodriver --port=4444 &
+    - uses: nanasess/setup-chromedriver@master
+    - run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub --port=4444 &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
