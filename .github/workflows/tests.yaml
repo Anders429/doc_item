@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: browser-actions/setup-firefox@latest
     - uses: browser-actions/setup-geckodriver@latest
-    - run: geckodriver --port=4444 &
+    - run: geckodriver --port=4444 --binary=/opt/hostedtoolcache/firefox/latest/x64/firefox &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
