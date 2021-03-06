@@ -26,12 +26,8 @@ jobs:
         toolchain: ${{ matrix.rust }}
         override: true
     - name: Build docs
-      uses: actions-rs/cargo@v1
       working-directory: ./ci/frontend/test_target
-      with:
-        command: doc
+      run: cargo doc
     - name: Run test
-      uses: actions-rs/cargo@v1
       working-directory: ./ci/frontend/doc_ui_test
-      with:
-        command: run
+      run: cargo run
