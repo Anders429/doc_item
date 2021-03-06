@@ -24,7 +24,7 @@ jobs:
     #- uses: nanasess/setup-chromedriver@master
     #- run: chromedriver --port=4444 --headless &
     - uses: browser-actions/setup-geckodriver@latest
-    - run: geckodriver --port=4444 --headless &
+    - run: geckodriver -port=4444 -headless &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
