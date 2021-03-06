@@ -24,7 +24,7 @@ jobs:
     #- uses: browser-actions/setup-firefox@latest
     #- uses: browser-actions/setup-geckodriver@latest
     #- run: geckodriver --port=4444 --binary=/opt/hostedtoolcache/firefox/latest/x64/firefox &
-    - run: chromedriver --port=4444 --headless &
+    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
