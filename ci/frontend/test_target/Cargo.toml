@@ -1,0 +1,8 @@
+[package]
+name = "test_target"
+version = "0.1.0"
+authors = ["Anders Evensen"]
+edition = "2018"
+
+[dependencies]
+docmod = {path = "../../.."}
