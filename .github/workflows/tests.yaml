@@ -21,9 +21,10 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
-    - uses: browser-actions/setup-firefox@latest
-    - uses: browser-actions/setup-geckodriver@latest
-    - run: geckodriver --port=4444 --binary=/opt/hostedtoolcache/firefox/latest/x64/firefox &
+    #- uses: browser-actions/setup-firefox@latest
+    #- uses: browser-actions/setup-geckodriver@latest
+    #- run: geckodriver --port=4444 --binary=/opt/hostedtoolcache/firefox/latest/x64/firefox &
+    - run: chromedriver --port=4444 --headless &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
