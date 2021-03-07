@@ -26,6 +26,7 @@ jobs:
       with:
         toolchain: ${{ matrix.rust }}
         override: true
+        components: rustdoc
     - name: Build docs
       working-directory: ./ci/frontend/test_target
       run: cargo doc
