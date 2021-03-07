@@ -1,3 +1,69 @@
+//! Attributes for item-level documentation customization.
+//!
+//! This crate provides attributes for adding various features to items when they are documented by
+//! `rustdoc`. This includes defining item-info docboxes, annotating an item's minimum version, and
+//! marking an item to be displayed as semi-transparent on module lists.
+//! 
+//! This allows for enhanced documentation, similar to what is done in the standard library with the
+//! [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
+//! feature and what is available on nightly with the
+//! [`doc_cfg`](https://doc.rust-lang.org/beta/unstable-book/language-features/doc-cfg.html) feature.
+//! However, this crate provides even more customization, allowing for use of custom CSS classes and
+//! text within docboxes.
+//! 
+//! ## Usage
+//! 
+//! ### Defining an Experimental API
+//! Marking an item as experimental (similar to what is done in the standard library through the
+//! `#[unstable]` attribute) can be done as follows:
+//! 
+//! ```
+//! /// This is an experimental API.
+//! ///
+//! /// The docbox will indicate the function is experimental. It will also appear semi-transparent on
+//! /// module lists.
+//! #[doc_item::docbox(content="<span class='emoji'>🔬</span> This is an experimental API.", class="unstable")]
+//! #[doc_item::short_docbox(content="Experimental", class="unstable")]
+//! #[doc_item::semi_transparent]
+//! pub fn foo() {}
+//! ```
+//! 
+//! ### Creating Custom-Styled Docboxes
+//! You can create your own custom styles to customize the display of docboxes. Define your item's
+//! docbox as follows:
+//! 
+//! ```
+//! /// An item with a custom docbox.
+//! ///
+//! /// The docbox will be a different color.
+//! #[doc_item::docbox(content="A custom docbox", class="custom")]
+//! #[doc_item::short_docbox(content="Custom", class="custom")]
+//! pub fn foo() {}
+//! ```
+//! 
+//! Next, create a style definition in a separate HTML file.
+//! ```html
+//! <style>
+//!     .stab.custom {
+//!         background: #f5ffd6;
+//!         border-color: #b9ff00;
+//!     }
+//! </style>
+//! ```
+//! 
+//! Finally, include the HTML file's contents in your documentation:
+//! 
+//! ```bash
+//! $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
+//! ```
+//! 
+//! And instruct [docs.rs](https://docs.rs/) to include the HTML file's contents as well by adding to your `Cargo.toml`:
+//! 
+//! ```toml
+//! [package.metadata.docs.rs]
+//! rustdoc-args = [ "--html-in-header", "custom.html" ]
+//! ```
+
 extern crate proc_macro;
 
 use darling::FromMeta;
