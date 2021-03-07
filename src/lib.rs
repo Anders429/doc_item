@@ -66,6 +66,9 @@
 //! rustdoc-args = [ "--html-in-header", "custom.html" ]
 //! ```
 
+#![warn(clippy::cargo, clippy::nursery, clippy::pedantic)]
+#![allow(clippy::default_trait_access, clippy::missing_panics_doc)]
+
 extern crate proc_macro;
 
 use darling::FromMeta;
@@ -302,7 +305,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
         box_args.class, id, box_args.content
     );
     if item_has_doc(item.into_iter()) {
-        prepend_to_doc(&mut result, &short_docbox, &mut item_iter);
+        prepend_to_doc(&mut result, short_docbox, &mut item_iter);
     } else {
         Extend::extend::<TokenStream>(
             &mut result,
