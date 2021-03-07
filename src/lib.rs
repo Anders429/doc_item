@@ -128,11 +128,9 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut item_iter = item.into_iter();
 
     // Insert script to gray the text.
-    // Note that shoving the empty `<script>` there is necessary for making sure the line isn't
-    // wrapped in a `<p>`.
     prepend_to_doc(
         &mut result,
-        "<script>var row=document.currentScript.parentElement.parentElement;if (row.tagName=='TR'){row.classList.add('unstable');}</script>",
+        "<script>var row=document.currentScript.parentElement.parentElement;if (row.tagName=='TR'){row.classList.add('unstable');}document.currentScript.remove();</script>",
         &mut item_iter
     );
 
