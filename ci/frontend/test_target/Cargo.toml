@@ -5,4 +5,4 @@ authors = ["Anders Evensen"]
 edition = "2018"
 
 [dependencies]
-docmod = {path = "../../.."}
+doc_item = {path = "../../.."}

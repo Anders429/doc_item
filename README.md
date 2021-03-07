@@ -1,7 +1,7 @@
-# docmod
+# doc_item
 
 [![MSRV](https://img.shields.io/badge/rustc-1.43.0+-yellow.svg)](#minimum-supported-rust-version)
-[![License](https://img.shields.io/crates/l/docmod)](#license)
+[![License](https://img.shields.io/crates/l/doc_item)](#license)
 
 Attributes for enhancing documentation.
 
@@ -24,9 +24,9 @@ Marking an item as experimental (similar to what is done in the standard library
 /// This is an experimental API.
 ///
 /// This API is not guaranteed to be stable. It may change at any time.
-#[docmod::docbox(content="<span class='emoji'>🔬</span> This is an experimental API.", class="unstable")]
-#[docmod::short_docbox(content="Experimental", class="unstable")]
-#[docmod::semi_transparent_item]
+#[doc_item::docbox(content="<span class='emoji'>🔬</span> This is an experimental API.", class="unstable")]
+#[doc_item::short_docbox(content="Experimental", class="unstable")]
+#[doc_item::semi_transparent_item]
 pub fn foo() {}
 ```
 

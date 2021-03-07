@@ -1,4 +1,4 @@
-use docmod::*;
+use doc_item::*;
 
 #[docbox(content="docbox content", class="docbox")]
 #[short_docbox(content="short docbox content", class="short-docbox")]

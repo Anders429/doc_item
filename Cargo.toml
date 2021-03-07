@@ -1,5 +1,5 @@
 [package]
-name = "docmod"
+name = "doc_item"
 version = "0.1.0"
 authors = ["Anders Evensen"]
 edition = "2018"
