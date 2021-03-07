@@ -288,6 +288,17 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     result
 }
 
+/// Adds a minimal version to an item.
+///
+/// This is meant to indicate that an item has been available since a certain version. The value
+/// is placed to the right of the item's definition in light text.
+///
+/// The value is styled the same as the since values used in the standard library's documentation.
+///
+/// ```
+/// #[doc_item::since("1.2.0")]
+/// pub fn foo() {}
+/// ```
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     let value = String::from_value(&parse_macro_input!(attr as Lit)).unwrap();
