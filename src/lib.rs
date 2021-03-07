@@ -123,7 +123,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-pub fn semi_transparent_item(_attr: TokenStream, item: TokenStream) -> TokenStream {
+pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut result = TokenStream::new();
     let mut item_iter = item.into_iter();
 

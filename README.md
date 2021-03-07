@@ -32,7 +32,7 @@ Marking an item as experimental (similar to what is done in the standard library
 /// module lists.
 #[doc_item::docbox(content="<span class='emoji'>🔬</span> This is an experimental API.", class="unstable")]
 #[doc_item::short_docbox(content="Experimental", class="unstable")]
-#[doc_item::semi_transparent_item]
+#[doc_item::semi_transparent]
 pub fn foo() {}
 ```
 
