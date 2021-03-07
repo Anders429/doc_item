@@ -60,10 +60,25 @@ fn prepend_to_doc(result: &mut TokenStream, value: &str, item_iter: &mut token_s
             Extend::extend::<TokenStream>(result, TokenStream::from_str(&attribute).unwrap());
         } else {
             // There are no more attributes, and therefore no more docs.
-            result.extend(TokenStream::from_str(value));
+            result.extend(TokenStream::from_str(&format!("#[doc = \"{}\"]", value)).unwrap());
             Extend::extend::<TokenStream>(result, token.into());
+            return;
         }
     }
+}
+
+fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
+    while let Some(token) = item_iter.next() {
+        if token.to_string() == "#" {
+            let attribute = item_iter.next().unwrap().to_string();
+            if attribute.starts_with("[doc =") {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    false
 }
 
 /// Adds a docbox to the item's item-info.
@@ -207,21 +222,29 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
 
     let mut result = TokenStream::new();
-    let mut item_iter = item.into_iter();
+    let mut item_iter = item.clone().into_iter();
 
     // Generate a unique id for the span. This allows for easy location and removal in the case of
     // multiple `short_docbox`s being used on one item.
     let id = Uuid::new_v4();
 
     // Insert the short box.
-    prepend_to_doc(
-        &mut result,
-        &format!(
-            "<script>document.currentScript.remove();</script><span class='stab {}' id='{}'>{}</span>",
-            box_args.class, id, box_args.content
-        ),
-        &mut item_iter,
+    let short_docbox = &format!(
+        "<script>document.currentScript.remove();</script><span class='stab {}' id='{}'>{}</span>",
+        box_args.class, id, box_args.content
     );
+    if item_has_doc(item.into_iter()) {
+        prepend_to_doc(
+            &mut result,
+            &short_docbox,
+            &mut item_iter,
+        );
+    } else {
+        Extend::extend::<TokenStream>(
+            &mut result,
+            TokenStream::from_str(&format!("#[doc = \"{}\"]", short_docbox)).unwrap(),
+        );
+    }
 
     // Insert short box removal script after all other attributes.
     insert_after_attributes(
@@ -237,6 +260,17 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     result
 }
 
+/// Makes an item semi-transparent in module lists.
+///
+/// This is commonly used to denote an item that is unstable and could potentially change in the 
+/// future, indicating to users that it is not very reliable.
+///
+/// To make an item semi-transparent, add this attribute before the item as follows:
+///
+/// ```
+/// #[doc_item::semi_transparent]
+/// pub fn foo() {}
+/// ```
 #[proc_macro_attribute]
 pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut result = TokenStream::new();
