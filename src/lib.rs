@@ -102,7 +102,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     prepend_to_doc(
         &mut result,
         &format!(
-            "<script></script><span class='stab {}' id='{}'>{}</span>",
+            "<script>document.currentScript.remove();</script><span class='stab {}' id='{}'>{}</span>",
             box_args.class, id, box_args.content
         ),
         &mut item_iter,
