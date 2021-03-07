@@ -1,5 +1,8 @@
 # doc_item
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Anders429/doc_item/Tests/master)](https://github.com/Anders429/doc_item/actions)
+[![crates.io](https://img.shields.io/crates/v/doc_item)](https://crates.io/crates/doc_item)
+[![docs.rs](https://docs.rs/doc_item/badge.svg)](https://docs.rs/doc_item)
 [![MSRV](https://img.shields.io/badge/rustc-1.50.0+-yellow.svg)](#minimum-supported-rust-version)
 [![License](https://img.shields.io/crates/l/doc_item)](#license)
 
