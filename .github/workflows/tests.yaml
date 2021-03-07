@@ -21,7 +21,7 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
-    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage &
+    - run: xvfb-run chromedriver --port=4444 --disable-gpu --no-sandbox --disable-dev-shm-usage &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
