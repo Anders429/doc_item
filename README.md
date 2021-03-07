@@ -1,6 +1,6 @@
 # doc_item
 
-[![MSRV](https://img.shields.io/badge/rustc-1.43.0+-yellow.svg)](#minimum-supported-rust-version)
+[![MSRV](https://img.shields.io/badge/rustc-1.50.0+-yellow.svg)](#minimum-supported-rust-version)
 [![License](https://img.shields.io/crates/l/doc_item)](#license)
 
 Attributes for enhancing documentation.
@@ -31,7 +31,7 @@ pub fn foo() {}
 ```
 
 ## Minimum Supported Rust Version
-This crate is guaranteed to function properly on `rustc 1.43.0` and up. It may compile on earlier
+This crate is guaranteed to function properly on `rustc 1.50.0` and up. It may compile on earlier
 versions, but it is not guaranteed that all features will display properly.
 
 ## Nightly Stability
