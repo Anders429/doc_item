@@ -52,7 +52,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .connect("http://localhost:4444")
         .await?;
         
-    let base_url = current_dir().unwrap().join(Path::new("../test_target/target/doc/test_target"));
+    let base_url = Path::new("file://").join(current_dir().unwrap().join(Path::new("../test_target/target/doc/test_target")));
     dbg!(&base_url);
     
     // Test individual doc pages.
