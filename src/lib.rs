@@ -3,20 +3,20 @@
 //! This crate provides attributes for adding various features to items when they are documented by
 //! `rustdoc`. This includes defining item-info docboxes, annotating an item's minimum version, and
 //! marking an item to be displayed as semi-transparent on module lists.
-//! 
+//!
 //! This allows for enhanced documentation, similar to what is done in the standard library with the
 //! [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
 //! feature and what is available on nightly with the
 //! [`doc_cfg`](https://doc.rust-lang.org/beta/unstable-book/language-features/doc-cfg.html) feature.
 //! However, this crate provides even more customization, allowing for use of custom CSS classes and
 //! text within docboxes.
-//! 
+//!
 //! ## Usage
-//! 
+//!
 //! ### Defining an Experimental API
 //! Marking an item as experimental (similar to what is done in the standard library through the
 //! `#[unstable]` attribute) can be done as follows:
-//! 
+//!
 //! ```
 //! /// This is an experimental API.
 //! ///
@@ -27,11 +27,11 @@
 //! #[doc_item::semi_transparent]
 //! pub fn foo() {}
 //! ```
-//! 
+//!
 //! ### Creating Custom-Styled Docboxes
 //! You can create your own custom styles to customize the display of docboxes. Define your item's
 //! docbox as follows:
-//! 
+//!
 //! ```
 //! /// An item with a custom docbox.
 //! ///
@@ -40,7 +40,7 @@
 //! #[doc_item::short_docbox(content="Custom", class="custom")]
 //! pub fn foo() {}
 //! ```
-//! 
+//!
 //! Next, create a style definition in a separate HTML file.
 //! ```html
 //! <style>
@@ -50,15 +50,15 @@
 //!     }
 //! </style>
 //! ```
-//! 
+//!
 //! Finally, include the HTML file's contents in your documentation:
-//! 
+//!
 //! ```bash
 //! $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
 //! ```
-//! 
+//!
 //! And instruct [docs.rs](https://docs.rs/) to include the HTML file's contents as well by adding to your `Cargo.toml`:
-//! 
+//!
 //! ```toml
 //! [package.metadata.docs.rs]
 //! rustdoc-args = [ "--html-in-header", "custom.html" ]
@@ -149,7 +149,7 @@ fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
 
 /// Adds a docbox to the item's item-info.
 ///
-/// A docbox is defined to be a box below the item's definition within documentation, alerting the 
+/// A docbox is defined to be a box below the item's definition within documentation, alerting the
 /// user to important information about the item. A common use case is to alert about an
 /// experimental item. This can be done as follows:
 ///
@@ -157,7 +157,7 @@ fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
 /// #[doc_item::docbox(content="This API is experimental", class="unstable")]
 /// pub fn foo() {}
 /// ```
-/// 
+///
 /// # Custom Styles
 ///
 /// The docbox can be styled using the `class` parameter. The class corresponds to a CSS class in
@@ -237,7 +237,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 /// It is good practice to keep the `content` concise, as short docblocks have limited space. When
 /// used with a [`macro@docbox`] attribute, the `short_docbox`'s content should be an abbreviated form of
 /// the `docbox`'s content.
-/// 
+///
 /// # Custom Styles
 ///
 /// The short docbox can be styled using the `class` parameter. The class corresponds to a CSS class
@@ -271,7 +271,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 /// ```
 ///
 /// # Multiple Short Docboxes
-/// Multiple short docbox attributes may be used on a single item. When generating the 
+/// Multiple short docbox attributes may be used on a single item. When generating the
 /// documentation, `doc_item` will insert the docboxes in the *reverse* order that they are provided
 /// in. For example:
 ///
@@ -300,11 +300,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
         box_args.class, id, box_args.content
     );
     if item_has_doc(item.into_iter()) {
-        prepend_to_doc(
-            &mut result,
-            &short_docbox,
-            &mut item_iter,
-        );
+        prepend_to_doc(&mut result, &short_docbox, &mut item_iter);
     } else {
         Extend::extend::<TokenStream>(
             &mut result,
@@ -328,7 +324,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 /// Makes an item semi-transparent in module lists.
 ///
-/// This is commonly used to denote an item that is unstable and could potentially change in the 
+/// This is commonly used to denote an item that is unstable and could potentially change in the
 /// future, indicating to users that it is not very reliable.
 ///
 /// To make an item semi-transparent, add this attribute before the item as follows:
