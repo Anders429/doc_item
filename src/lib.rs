@@ -66,6 +66,61 @@ fn prepend_to_doc(result: &mut TokenStream, value: &str, item_iter: &mut token_s
     }
 }
 
+/// Adds a docbox to the item's item-info.
+///
+/// A docbox is defined to be a box below the item's definition within documentation, alerting the 
+/// user to important information about the item. A common use case is to alert about an
+/// experimental item. This can be done as follows:
+///
+/// ```
+/// #[doc_item::docbox(content="This API is experimental", class="unstable")]
+/// pub fn foo() {}
+/// ```
+/// 
+/// # Custom Styles
+///
+/// The docbox will can styled using the `class` parameter. The class corresponds to a CSS class in
+/// the generated HTML. In the above example, `"unstable"` was used, as it is already a predefined
+/// class by rustdoc. Other predefined classes include `"portability"` and `"deprecated"`. If
+/// different style is desired, a custom class can be provided using the `--html-in-header` rustdoc
+/// flag.
+///
+/// Provide a custom class like this:
+///
+/// ```
+/// #[doc_item::docbox(content="A custom docbox", class="custom")]
+/// pub fn foo() {}
+/// ```
+///
+/// Define the custom class in a separate file, potentially named `custom.html`.
+///
+/// ```html
+/// <style>
+///     .custom {
+///         background: #f5ffd6;
+///         border-color: #b9ff00;
+///     }
+/// </style>
+/// ```
+///
+/// And finally build the documentation with the custom docbox class.
+///
+/// ```bash
+/// $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
+/// ```
+///
+/// # Multiple Docboxes
+/// Multiple docbox attributes may be used on a single item. When generating the documentation,
+/// `doc_item` will insert the docboxes in the *reverse* order that they are provided in. For
+/// example:
+///
+/// ```
+/// #[doc_item::docbox(content="This box will display second", class="unstable")]
+/// #[doc_item::docbox(content="This box will display first", class="portability")]
+/// pub fn foo() {}
+/// ```
+///
+/// will result in the `"portability"` docbox being displayed above the `"unstable"` docbox.
 #[proc_macro_attribute]
 pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
