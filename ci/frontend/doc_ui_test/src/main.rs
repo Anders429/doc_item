@@ -53,6 +53,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
         
     let base_url = current_dir().unwrap().join(Path::new("../test_target/target/doc/test_target"));
+    dbg!(base_url);
     
     // Test individual doc pages.
     client.goto(base_url.join("fn.function.html").to_str().unwrap()).await?;
