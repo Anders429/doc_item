@@ -24,7 +24,8 @@ text within docboxes.
 
 ### Defining an Experimental API
 Marking an item as experimental (similar to what is done in the standard library through the
-`#[unstable]` attribute) can be done as follows:
+[`#[unstable]`](https://rustc-dev-guide.rust-lang.org/stability.html#unstable) attribute) can be
+done as follows:
 
 ```rust
 /// This is an experimental API.
