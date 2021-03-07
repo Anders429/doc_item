@@ -79,7 +79,7 @@ fn prepend_to_doc(result: &mut TokenStream, value: &str, item_iter: &mut token_s
 /// 
 /// # Custom Styles
 ///
-/// The docbox will can styled using the `class` parameter. The class corresponds to a CSS class in
+/// The docbox can be styled using the `class` parameter. The class corresponds to a CSS class in
 /// the generated HTML. In the above example, `"unstable"` was used, as it is already a predefined
 /// class by rustdoc. Other predefined classes include `"portability"` and `"deprecated"`. If
 /// different style is desired, a custom class can be provided using the `--html-in-header` rustdoc
@@ -142,6 +142,66 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     result
 }
 
+/// Adds a short docbox to the item in module lists.
+///
+/// A short docbox is defined to be a box immediately before the item's short documentation in
+/// module lists, alerting the user to important information about the item. A common use case is to
+/// alert about an experimental item. This can be done as follows:
+///
+/// ```
+/// #[doc_item::short_docbox(content="Experimental", class="unstable")]
+/// pub fn foo() {}
+/// ```
+///
+/// It is good practice to keep the `content` concise, as short docblocks have limited space. When
+/// used with a [`macro@docbox`] attribute, the `short_docbox`'s content should be an abbreviated form of
+/// the `docbox`'s content.
+/// 
+/// # Custom Styles
+///
+/// The short docbox can be styled using the `class` parameter. The class corresponds to a CSS class
+/// in the generated HTML. In the above example, `"unstable"` was used, as it is already a
+/// predefined class by rustdoc. Other predefined classes include `"portability"` and
+/// `"deprecated"`. If different style is desired, a custom class can be provided using the
+/// `--html-in-header` rustdoc flag.
+///
+/// Provide a custom class like this:
+///
+/// ```
+/// #[doc_item::short_docbox(content="Custom", class="custom")]
+/// pub fn foo() {}
+/// ```
+///
+/// Define the custom class in a separate file, potentially named `custom.html`.
+///
+/// ```html
+/// <style>
+///     .custom {
+///         background: #f5ffd6;
+///         border-color: #b9ff00;
+///     }
+/// </style>
+/// ```
+///
+/// And finally build the documentation with the custom docbox class.
+///
+/// ```bash
+/// $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
+/// ```
+///
+/// # Multiple Short Docboxes
+/// Multiple short docbox attributes may be used on a single item. When generating the 
+/// documentation, `doc_item` will insert the docboxes in the *reverse* order that they are provided
+/// in. For example:
+///
+/// ```
+/// #[doc_item::short_docbox(content="Second", class="unstable")]
+/// #[doc_item::short_docbox(content="First", class="portability")]
+/// pub fn foo() {}
+/// ```
+///
+/// will result in the `"portability"` short docbox being displayed to the left of the `"unstable"`
+/// short docbox.
 #[proc_macro_attribute]
 pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
