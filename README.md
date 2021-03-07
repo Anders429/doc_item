@@ -6,11 +6,13 @@
 [![MSRV](https://img.shields.io/badge/rustc-1.50.0+-yellow.svg)](#minimum-supported-rust-version)
 [![License](https://img.shields.io/crates/l/doc_item)](#license)
 
-Attributes for enhancing documentation.
+Attributes for item-level documentation customization.
 
-This crate provides attributes for defining docboxes, making items semi-transparent, and defining
-`since` spans in documentation. This allows for enhanced documentation, similar to what is done in
-the standard library with the
+This crate provides attributes for adding various features to items when they are documented by
+`rustdoc`. This includes defining item-info docboxes, annotating an item's minimum version, and
+marking an item to be displayed as semi-transparent on module lists.
+
+This allows for enhanced documentation, similar to what is done in the standard library with the
 [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
 feature and what is available on nightly with the
 [`doc_cfg`](https://doc.rust-lang.org/beta/unstable-book/language-features/doc-cfg.html) feature.
