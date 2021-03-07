@@ -9,8 +9,9 @@
 Attributes for item-level documentation customization.
 
 This crate provides attributes for adding various features to items when they are documented by
-`rustdoc`. This includes defining item-info docboxes, annotating an item's minimum version, and
-marking an item to be displayed as semi-transparent on module lists.
+[`rustdoc`](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html). This includes defining
+item-info docboxes, annotating an item's minimum version, and marking an item to be displayed as
+semi-transparent on module lists.
 
 This allows for enhanced documentation, similar to what is done in the standard library with the
 [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
