@@ -150,7 +150,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \" <script></script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.firstElementChild.prepend(since);}}else{{header.lastElementChild.before(since);}}}}else{{since.remove();}}</script>\"]",
+            "#[doc = \" <script></script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{header.lastElementChild.before(since);}}}}else{{since.remove();}}</script>\"]",
             value
         ))
         .unwrap(),
