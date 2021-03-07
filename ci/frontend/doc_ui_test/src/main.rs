@@ -12,6 +12,17 @@ async fn test_docbox(client: &mut Client, prev_element_text: &str) -> Result<(),
     Ok(())
 }
 
+async fn test_docbox_in_band(client: &mut Client, prev_element_text: &str) -> Result<(), Box<dyn std::error::Error>> {
+    // Check contents.
+    let mut item_info = client.find(Locator::Css(".item-info")).await?;
+    assert_eq!(item_info.html(false).await.unwrap(), "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>");
+    // Check location.
+    let mut prev_element = item_info.find(Locator::XPath("./preceding-sibling::*[1]/*[@class=\"in-band\"]")).await?;
+    assert_eq!(prev_element.text().await.unwrap(), prev_element_text);
+    
+    Ok(())
+}
+
 async fn test_docbox_html(client: &mut Client, prev_element_html: &str) -> Result<(), Box<dyn std::error::Error>> {
     // Check contents.
     let mut item_info = client.find(Locator::Css(".item-info")).await?;
@@ -105,7 +116,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     test_since_standalone(&mut client, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#59\" title=\"goto source code\">[src]</a>").await?;
     
     client.goto(&format!("file://{}", base_url.join("module/index.html").to_str().unwrap())).await?;
-    test_docbox(&mut client, "Module test_target::module\n1.0.0[−][src]").await?;
+    test_docbox_in_band(&mut client, "Module test_target::module").await?;
     test_since_out_of_band(&mut client).await?;
     
     client.goto(&format!("file://{}", base_url.join("type.Type.html").to_str().unwrap())).await?;
