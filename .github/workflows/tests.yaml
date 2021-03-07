@@ -21,15 +21,7 @@ jobs:
           - 1.50.0
     steps:
     - uses: actions/checkout@v2
-    #- uses: browser-actions/setup-firefox@latest
-    #- uses: browser-actions/setup-geckodriver@latest
-    #- run: geckodriver --port=4444 --binary=/opt/hostedtoolcache/firefox/latest/x64/firefox &
-    #- run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage &
-    #- run: chromedriver --
-    - uses: nanasess/setup-chromedriver@master
-    - name: Install latest Google Chrome
-      run: wget -q https://script.install.devinsideyou.com/google-chrome && chmod +x google-chrome
-    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage --binary=$(pwd)/vendor/bin:${PATH} &
+    - run: chromedriver --port=4444 --headless --disable-gpu --no-sandbox --disable-dev-shm-usage &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
