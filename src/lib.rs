@@ -76,7 +76,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.tagName!='TD'){{box.parentElement.before(box);}}else{{box.remove();}}</script>\"]",
+            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.tagName!='TD'){{box.parentElement.before(box);}}else{{box.remove();}}document.currentScript.remove();</script>\"]",
             box_args.class,
             box_args.content
         ))
