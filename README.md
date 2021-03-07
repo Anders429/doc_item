@@ -78,7 +78,8 @@ This crate is guaranteed to function properly on `rustc 1.50.0` and up. It may c
 versions, but it is not guaranteed that all features will display properly.
 
 ## Nightly Stability
-As [docs.rs](https://docs.rs/) builds documentation on the `nightly` channel, this crate will
+As [docs.rs](https://docs.rs/) builds documentation on the
+[`nightly`](https://rust-lang.github.io/rustup/concepts/channels.html) channel, this crate will
 attempt to maintain functionality on `nightly`. As this crate's functionality relies on injecting
 HTML into the generated documentation, and internal layout of HTML is subject to change, `nightly`
 functionality may occasionally break. Please report issues as you find them on the associated github
