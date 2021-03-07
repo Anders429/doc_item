@@ -112,7 +112,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \"\n <script>var spans=document.currentScript.parentElement.getElementsByTagName('SPAN');for (var i=0;i<spans.length;i++){{var span=spans.item(i);if (span.id=='{}'){{span.remove();break;}}}}</script>\"]",
+            "#[doc = \"\n <script>var spans=document.currentScript.parentElement.getElementsByTagName('SPAN');for (var i=0;i<spans.length;i++){{var span=spans.item(i);if (span.id=='{}'){{span.remove();break;}}}}document.currentScript.remove();</script>\"]",
             id
         ))
         .unwrap(),
