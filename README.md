@@ -33,6 +33,42 @@ Marking an item as experimental (similar to what is done in the standard library
 pub fn foo() {}
 ```
 
+### Creating Custom-Styled Docboxes
+You can create your own custom styles to customize the display of docboxes. Define your item's
+docbox as follows:
+
+```rust
+/// An item with a custom docbox.
+///
+/// The docbox will be a different color.
+#[doc_item::docbox(content="A custom docbox", class="custom")]
+#[doc_item::short_docbox(content="Custom", class="custom")]
+pub fn foo() {}
+```
+
+Next, create a style definition in a separate HTML file.
+```html
+<style>
+    .stab.custom {
+        background: #f5ffd6;
+        border-color: #b9ff00;
+    }
+</style>
+```
+
+Finally, include the HTML file's contents in your documentation:
+
+```bash
+$ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
+```
+
+And instruct [docs.rs](https://docs.rs/) to include the HTML file's contents as well by adding to your `Cargo.toml`:
+
+```toml
+[package.metadata.docs.rs]
+rustdoc-args = [ "--html-in-header", "custom.html" ]
+```
+
 ## Minimum Supported Rust Version
 This crate is guaranteed to function properly on `rustc 1.50.0` and up. It may compile on earlier
 versions, but it is not guaranteed that all features will display properly.

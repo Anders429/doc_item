@@ -1,0 +1,8 @@
+[package]
+name = "custom_docbox"
+version = "0.1.0"
+authors = ["Anders Evensen"]
+edition = "2018"
+
+[dependencies]
+doc_item = {path = "../.."}
