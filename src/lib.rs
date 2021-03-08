@@ -66,7 +66,13 @@
 //! rustdoc-args = [ "--html-in-header", "custom.html" ]
 //! ```
 
-#![warn(clippy::cargo, clippy::nursery, clippy::pedantic)]
+#![warn(
+    clippy::cargo,
+    clippy::nursery,
+    clippy::pedantic,
+    unused_crate_dependencies,
+    unused_qualifications
+)]
 #![allow(clippy::default_trait_access, clippy::missing_panics_doc)]
 
 extern crate proc_macro;
