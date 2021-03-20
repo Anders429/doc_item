@@ -54,9 +54,9 @@ pub fn foo() {}
 Next, create a style definition in a separate HTML file.
 ```html
 <style>
-    .stab.custom {
-        background: #f5ffd6;
-        border-color: #b9ff00;
+    .custom {
+        background: #c4ffd7;
+        border-color: #7bdba1;
     }
 </style>
 ```
