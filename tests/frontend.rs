@@ -114,7 +114,7 @@ fn test_since_out_of_band(driver: &WebDriver) {
 fn test_since_standalone(driver: &WebDriver, next_element_html: &str) {
     let since = driver.find_element(By::ClassName("since")).expect("Couldn't find since element");
     assert_eq!(since.outer_html().expect("Couldn't get outer HTML of since"), "<span class=\"since\">1.0.0</span>");
-    let next_element = since.find_element(by::XPath("./following-sibling::*[1]")).expect("Couldn't find since's next element");
+    let next_element = since.find_element(By::XPath("./following-sibling::*[1]")).expect("Couldn't find since's next element");
     assert_eq!(next_element.outer_html().expect("Couldn't get outer HTML of next element"), next_element_html);
 }
 
