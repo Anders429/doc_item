@@ -108,4 +108,7 @@ fn doc_ui() {
     // Test individual doc pages.
     driver.get(&format!("file://{}", base_url.join("fn.function.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "pub fn function()");
+
+    driver.get(&format!("file://{}", base_url.join("struct.Struct.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "pub struct Struct {}");
 }
