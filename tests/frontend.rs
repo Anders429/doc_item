@@ -194,7 +194,7 @@ fn doc_ui() {
     test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/frontend/frontend.rs.html#62\" title=\"goto source code\">[src]</a>");
     
     driver.get(&format!("file://{}", base_url.join("module/index.html").to_str().unwrap())).unwrap();
-    test_docbox_in_band(&driver, "Module test_target::module");
+    test_docbox_in_band(&driver, "Module frontend::module");
     test_since_out_of_band(&driver);
     
     driver.get(&format!("file://{}", base_url.join("type.Type.html").to_str().unwrap())).unwrap();
