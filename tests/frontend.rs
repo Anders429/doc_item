@@ -106,6 +106,6 @@ fn doc_ui() {
         .join(Path::new("tests/target/docs/frontend"));
 
     // Test individual doc pages.
-    driver.get(base_url.join("fn.function.html").to_str().unwrap()).unwrap();
+    driver.get(&format!("file://{}", base_url.join("fn.function.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "pub fn function()");
 }
