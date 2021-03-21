@@ -97,16 +97,6 @@ fn doc_ui() {
         .wait()
         .expect("Failed to generate docs");
 
-    // Start chromedriver.
-    Command::new("chromedriver")
-        .arg("--port=4444")
-        .arg("--disable-gpu")
-        .arg("--no-sandbox")
-        .arg("--disable-dev-shm-usage")
-        .arg("&")
-        .spawn()
-        .expect("Could not start chromedriver");
-
     // Connect to chromedriver.
     let driver = WebDriver::new("http://localhost:4444", DesiredCapabilities::chrome())
         .expect("Could not connect to chromedriver");
