@@ -84,6 +84,16 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
 }
 
 #[cfg(test)]
+fn test_docbox_html(driver: &WebDriver, prev_element_html: &str) {
+    // Check contents.
+    let item_info = driver.find_element(By::ClassName("item-info")).expect(&format!("Couldn't find element with previous element text: {}", prev_element_text));
+    assert_eq!(item_info.outer_html().expect("Couldn't obtain item-info's outer HTML"), "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>");
+    // Check location.
+    let prev_element = item_info.find_element(By::XPath("./preceding-sibling::*[1]")).expect(&format!("Couldn't find previous element with text: {}", prev_element_text));
+    assert_eq!(prev_element.outer_html().expect("Couldn't obtain previous element's outer HTML"), prev_element_text);
+}
+
+#[cfg(test)]
 #[test]
 fn doc_ui() {
     // Compile docs.
@@ -110,5 +120,5 @@ fn doc_ui() {
     test_docbox(&driver, "pub fn function()");
 
     driver.get(&format!("file://{}", base_url.join("struct.Struct.html").to_str().unwrap())).unwrap();
-    test_docbox(&driver, "pub struct Struct {}");
+    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust struct\">pub struct Struct {}</pre></div>");
 }
