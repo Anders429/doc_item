@@ -103,6 +103,7 @@ fn doc_ui() {
         .arg("--disable-gpu")
         .arg("--no-sandbox")
         .arg("--disable-dev-shm-usage")
+        .arg("&")
         .spawn()
         .expect("Could not start chromedriver");
 
