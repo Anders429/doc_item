@@ -101,6 +101,14 @@ fn test_since_out_of_band(driver: &WebDriver) {
 }
 
 #[cfg(test)]
+fn test_since_standalone(driver: &WebDriver, next_element_html: &str) {
+    let since = driver.find_element(By::ClassName("since")).expect("Couldn't find since element");
+    assert_eq!(since.outer_html().expect("Couldn't get outer HTML of since"), "<span class=\"since\">1.0.0</span>");
+    let next_element = since.find_element(by::XPath("./following-sibling::*[1]")).expect("Couldn't find since's next element");
+    assert_eq!(next_element.outer_html().expect("Couldn't get outer HTML of next element"), next_element_html);
+}
+
+#[cfg(test)]
 #[test]
 fn doc_ui() {
     // Compile docs.
@@ -129,5 +137,43 @@ fn doc_ui() {
 
     driver.get(&format!("file://{}", base_url.join("struct.Struct.html").to_str().unwrap())).unwrap();
     test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust struct\">pub struct Struct {}</pre></div>");
+    test_since_out_of_band(&driver);
+
+    driver.get(&format!("file://{}", base_url.join("enum.Enum.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "pub enum Enum {}");
+    test_since_out_of_band(&driver);
+    
+    driver.get(&format!("file://{}", base_url.join("constant.CONST.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "pub const CONST: usize = 0;");
+    test_since_out_of_band(&driver);
+    
+    driver.get(&format!("file://{}", base_url.join("static.STATIC.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "pub static STATIC: usize");
+    test_since_out_of_band(&driver);
+    
+    driver.get(&format!("file://{}", base_url.join("union.Union.html").to_str().unwrap())).unwrap();
+    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust union\">pub union Union {
+    // some fields omitted
+}</pre></div>");
+    test_since_out_of_band(&driver);
+
+    driver.get(&format!("file://{}", base_url.join("struct.Method.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "pub fn method()\n1.0.0\n[src]\n[−]");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#46\" title=\"goto source code\">[src]</a>");
+    
+    driver.get(&format!("file://{}", base_url.join("trait.Trait.html").to_str().unwrap())).unwrap();
+    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust trait\">pub trait Trait { }</pre></div>");
+    test_since_out_of_band(&driver);
+    
+    driver.get(&format!("file://{}", base_url.join("struct.ImplTrait.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "impl Trait for ImplTrait\n1.0.0\n[src]");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#59\" title=\"goto source code\">[src]</a>");
+    
+    driver.get(&format!("file://{}", base_url.join("module/index.html").to_str().unwrap())).unwrap();
+    test_docbox_in_band(&driver, "Module test_target::module");
+    test_since_out_of_band(&driver);
+    
+    driver.get(&format!("file://{}", base_url.join("type.Type.html").to_str().unwrap())).unwrap();
+    test_docbox(&driver, "type Type = usize;");
     test_since_out_of_band(&driver);
 }
