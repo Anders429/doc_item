@@ -93,6 +93,7 @@ fn test_docbox_html(driver: &WebDriver, prev_element_html: &str) {
     assert_eq!(prev_element.outer_html().expect("Couldn't obtain previous element's outer HTML"), prev_element_html);
 }
 
+#[cfg(test)]
 fn test_since_out_of_band(driver: &WebDriver) {
     let out_of_band = driver.find_element(By::ClassName("out-of-band")).expect("Couldn't find out-of-band element");
     let first_child_element = out_of_band.find_element(By::XPath("./child::*[1]")).expect("Couldn't find first child of out-of-band element");
