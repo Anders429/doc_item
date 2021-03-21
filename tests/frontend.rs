@@ -93,6 +93,12 @@ fn test_docbox_html(driver: &WebDriver, prev_element_html: &str) {
     assert_eq!(prev_element.outer_html().expect("Couldn't obtain previous element's outer HTML"), prev_element_html);
 }
 
+fn test_since_out_of_band(driver: &WebDriver) {
+    let out_of_band = driver.find_element(By::ClassName("out-of-band")).expect("Couldn't find out-of-band element");
+    let first_child_element = out_of_band.find_element(By::XPath("./child::*[1]")).expect("Couldn't find first child of out-of-band element");
+    assert_eq!(first_child_element.outer_html().expect("Couldn't find child element's outer HTML"), "<span class=\"since\">1.0.0</span>");
+}
+
 #[cfg(test)]
 #[test]
 fn doc_ui() {
@@ -118,7 +124,9 @@ fn doc_ui() {
     // Test individual doc pages.
     driver.get(&format!("file://{}", base_url.join("fn.function.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "pub fn function()");
+    test_since_out_of_band(&driver);
 
     driver.get(&format!("file://{}", base_url.join("struct.Struct.html").to_str().unwrap())).unwrap();
     test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust struct\">pub struct Struct {}</pre></div>");
+    test_since_out_of_band(&driver);
 }
