@@ -84,6 +84,16 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
 }
 
 #[cfg(test)]
+fn test_docbox_in_band(driver: &WebDriver, prev_element_text: &str) {
+    // Check contents.
+    let item_info = driver.find_element(By::ClassName("item-info")).expect(&format!("Couldn't find element with previous element text: {}", prev_element_text));
+    assert_eq!(item_info.outer_html().expect("Couldn't obtain item-info's outer HTML"), "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>");
+    // Check location.
+    let prev_element = item_info.find_element(By::XPath("./preceding-sibling::*[1]/*[@class=\"in-band\"]")).expect(&format!("Couldn't find previous element with text: {}", prev_element_text));
+    assert_eq!(prev_element.text().expect("Couldn't obtain previous element's text"), prev_element_text);
+}
+
+#[cfg(test)]
 fn test_docbox_html(driver: &WebDriver, prev_element_html: &str) {
     // Check contents.
     let item_info = driver.find_element(By::ClassName("item-info")).expect(&format!("Couldn't find element with previous element text: {}", prev_element_html));
@@ -106,6 +116,20 @@ fn test_since_standalone(driver: &WebDriver, next_element_html: &str) {
     assert_eq!(since.outer_html().expect("Couldn't get outer HTML of since"), "<span class=\"since\">1.0.0</span>");
     let next_element = since.find_element(by::XPath("./following-sibling::*[1]")).expect("Couldn't find since's next element");
     assert_eq!(next_element.outer_html().expect("Couldn't get outer HTML of next element"), next_element_html);
+}
+
+#[cfg(test)]
+fn test_short_docbox(driver: &WebDriver, link_text: &str) {
+    let link = driver.find_element(By::LinkText(link_text)).expect(&format!("Couldn't find link with text {}", link_text));
+    let docblock_short = link.find_element(By::XPath("./parent::*[1]/following-sibling::*[1]")).expect("Couldn't find docblock-short");
+    assert_eq!(docblock_short.text().expect("Couldn't get docblock_short's text"), "short docbox content");
+}
+
+#[cfg(test)]
+fn test_semi_transparent_item(driver: &WebDriver, link_text: &str) {
+    let link = driver.find_element(By::LinkText(link_text)).expect(&format!("Couldn't find link with text {}", link_text));
+    let docblock = link.find_element(By::XPath("./parent::*[1]/parent::*[1]")).expect("Couldn't find docblock-short");
+    assert_eq!(docblock.get_attribute("class").unwrap().unwrap(), "module-item unstable");
 }
 
 #[cfg(test)]
@@ -176,4 +200,26 @@ fn doc_ui() {
     driver.get(&format!("file://{}", base_url.join("type.Type.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "type Type = usize;");
     test_since_out_of_band(&driver);
+
+    // Test main doc page.
+    driver.get(&format!("file://{}", base_url.join("index.html").to_str().unwrap()));
+    test_short_docbox(&driver, "function");
+    test_short_docbox(&driver, "Struct");
+    test_short_docbox(&driver, "Enum");
+    test_short_docbox(&driver, "CONST");
+    test_short_docbox(&driver, "STATIC");
+    test_short_docbox(&driver, "Union");
+    test_short_docbox(&driver, "Trait");
+    test_short_docbox(&driver, "module");
+    test_short_docbox(&driver, "Type");
+    
+    test_semi_transparent_item(&driver, "function");
+    test_semi_transparent_item(&driver, "Struct");
+    test_semi_transparent_item(&driver, "Enum");
+    test_semi_transparent_item(&driver, "CONST");
+    test_semi_transparent_item(&driver, "STATIC");
+    test_semi_transparent_item(&driver, "Union");
+    test_semi_transparent_item(&driver, "Trait");
+    test_semi_transparent_item(&driver, "module");
+    test_semi_transparent_item(&driver, "Type");
 }
