@@ -4,4 +4,5 @@ Cargo.lock
 /ci/frontend/*/Cargo.lock
 /examples/*/target
 /examples/*/Cargo.lock
+/tests/target
 chromedriver.exe
