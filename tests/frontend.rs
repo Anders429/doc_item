@@ -183,7 +183,7 @@ fn doc_ui() {
 
     driver.get(&format!("file://{}", base_url.join("struct.Method.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "pub fn method()\n1.0.0\n[src]\n[−]");
-    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#46\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/frontend/frontend.rs.html#49\" title=\"goto source code\">[src]</a>");
     
     driver.get(&format!("file://{}", base_url.join("trait.Trait.html").to_str().unwrap())).unwrap();
     test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust trait\">pub trait Trait { }</pre></div>");
@@ -191,7 +191,7 @@ fn doc_ui() {
     
     driver.get(&format!("file://{}", base_url.join("struct.ImplTrait.html").to_str().unwrap())).unwrap();
     test_docbox(&driver, "impl Trait for ImplTrait\n1.0.0\n[src]");
-    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#59\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/frontend/frontend.rs.html#62\" title=\"goto source code\">[src]</a>");
     
     driver.get(&format!("file://{}", base_url.join("module/index.html").to_str().unwrap())).unwrap();
     test_docbox_in_band(&driver, "Module test_target::module");
