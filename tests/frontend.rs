@@ -103,7 +103,7 @@ fn doc_ui() {
 
     let base_url = current_dir()
         .unwrap()
-        .join(Path::new("tests/target/docs/frontend"));
+        .join(Path::new("tests/target/doc/frontend"));
 
     // Test individual doc pages.
     driver.get(&format!("file://{}", base_url.join("fn.function.html").to_str().unwrap())).unwrap();
