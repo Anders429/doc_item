@@ -91,6 +91,12 @@ struct BoxArgs {
     class: String,
 }
 
+#[derive(FromMeta)]
+struct SinceArgs {
+    #[darling(default)]
+    content: String,
+}
+
 fn insert_after_attributes(
     result: &mut TokenStream,
     value: TokenStream,
@@ -374,15 +380,15 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
 /// ```
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let value = String::from_value(&parse_macro_input!(attr as Lit)).unwrap();
+    let since_args = SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
 
     let mut result = TokenStream::new();
 
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{var prev=since.parentElement.previousElementSibling;while(prev.tagName!='H3'&&prev.tagName!='H4'){{prev=prev.previousElementSibling;}}prev.lastElementChild.before(since);}}}}else{{since.remove();}}document.currentScript.remove();</script>\"]",
-            value
+            "#[doc = \" <script></script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{header.lastElementChild.before(since);}}}}else{{since.remove();}}</script>\"]",
+            since_args.content
         ))
         .unwrap(),
         item.into_iter()
