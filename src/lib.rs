@@ -46,9 +46,9 @@
 //! Next, create a style definition in a separate HTML file.
 //! ```html
 //! <style>
-//!     .stab.custom {
-//!         background: #f5ffd6;
-//!         border-color: #b9ff00;
+//!     .custom {
+//!         background: #c4ffd7;
+//!         border-color: #7bdba1;
 //!     }
 //! </style>
 //! ```
@@ -375,7 +375,7 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
 /// The value is styled the same as the since values used in the standard library's documentation.
 ///
 /// ```
-/// #[doc_item::since("1.2.0")]
+/// #[doc_item::since(content="1.2.0")]
 /// pub fn foo() {}
 /// ```
 #[proc_macro_attribute]
