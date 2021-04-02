@@ -9,8 +9,9 @@
 Attributes for item-level documentation customization.
 
 This crate provides attributes for adding various features to items when they are documented by
-`rustdoc`. This includes defining item-info docboxes, annotating an item's minimum version, and
-marking an item to be displayed as semi-transparent on module lists.
+[`rustdoc`](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html). This includes defining
+item-info docboxes, annotating an item's minimum version, and marking an item to be displayed as
+semi-transparent on module lists.
 
 This allows for enhanced documentation, similar to what is done in the standard library with the
 [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
@@ -23,15 +24,17 @@ text within docboxes.
 
 ### Defining an Experimental API
 Marking an item as experimental (similar to what is done in the standard library through the
-`#[unstable]` attribute) can be done as follows:
+[`#[unstable]`](https://rustc-dev-guide.rust-lang.org/stability.html#unstable) attribute) can be
+done as follows:
 
 ```rust
 /// This is an experimental API.
 ///
-/// This API is not guaranteed to be stable. It may change at any time.
+/// The docbox will indicate the function is experimental. It will also appear semi-transparent on
+/// module lists.
 #[doc_item::docbox(content="<span class='emoji'>🔬</span> This is an experimental API.", class="unstable")]
 #[doc_item::short_docbox(content="Experimental", class="unstable")]
-#[doc_item::semi_transparent_item]
+#[doc_item::semi_transparent]
 pub fn foo() {}
 ```
 
@@ -51,9 +54,9 @@ pub fn foo() {}
 Next, create a style definition in a separate HTML file.
 ```html
 <style>
-    .stab.custom {
-        background: #f5ffd6;
-        border-color: #b9ff00;
+    .custom {
+        background: #c4ffd7;
+        border-color: #7bdba1;
     }
 </style>
 ```
@@ -76,7 +79,8 @@ This crate is guaranteed to function properly on `rustc 1.50.0` and up. It may c
 versions, but it is not guaranteed that all features will display properly.
 
 ## Nightly Stability
-As [docs.rs](https://docs.rs/) builds documentation on the `nightly` channel, this crate will
+As [docs.rs](https://docs.rs/) builds documentation on the
+[`nightly`](https://rust-lang.github.io/rustup/concepts/channels.html) channel, this crate will
 attempt to maintain functionality on `nightly`. As this crate's functionality relies on injecting
 HTML into the generated documentation, and internal layout of HTML is subject to change, `nightly`
 functionality may occasionally break. Please report issues as you find them on the associated github

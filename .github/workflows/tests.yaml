@@ -19,6 +19,7 @@ jobs:
           - beta
           - nightly
           - 1.50.0
+      fail-fast: false
     steps:
     - uses: actions/checkout@v2
     - run: xvfb-run chromedriver --port=4444 --disable-gpu --no-sandbox --disable-dev-shm-usage &
@@ -33,3 +34,23 @@ jobs:
     - name: Run test
       working-directory: ./ci/frontend/doc_ui_test
       run: cargo run
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - nightly
+          - 1.50.0
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: ${{ matrix.rust }}
+        override: true
+    - uses: actions-rs/cargo@v1
+      with:
+        command: test
