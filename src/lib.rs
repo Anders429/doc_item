@@ -80,7 +80,7 @@ extern crate proc_macro;
 use darling::FromMeta;
 use proc_macro::{token_stream, TokenStream};
 use std::str::FromStr;
-use syn::{parse_macro_input, AttributeArgs, Lit};
+use syn::{parse_macro_input, AttributeArgs};
 use uuid::Uuid;
 
 #[derive(FromMeta)]
