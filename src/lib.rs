@@ -14,6 +14,12 @@ struct BoxArgs {
     class: String,
 }
 
+#[derive(FromMeta)]
+struct SinceArgs {
+    #[darling(default)]
+    content: String,
+}
+
 fn insert_after_attributes(
     result: &mut TokenStream,
     value: TokenStream,
@@ -143,6 +149,7 @@ pub fn semi_transparent_item(_attr: TokenStream, item: TokenStream) -> TokenStre
 
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let since_args = SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
     let value = String::from_value(&parse_macro_input!(attr as Lit)).unwrap();
 
     let mut result = TokenStream::new();
@@ -151,7 +158,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
         &mut result,
         TokenStream::from_str(&format!(
             "#[doc = \" <script></script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{header.lastElementChild.before(since);}}}}else{{since.remove();}}</script>\"]",
-            value
+            since_args.content
         ))
         .unwrap(),
         item.into_iter()
