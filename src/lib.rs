@@ -150,7 +150,6 @@ pub fn semi_transparent_item(_attr: TokenStream, item: TokenStream) -> TokenStre
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     let since_args = SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
-    let value = String::from_value(&parse_macro_input!(attr as Lit)).unwrap();
 
     let mut result = TokenStream::new();
 
