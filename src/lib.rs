@@ -375,7 +375,7 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
 /// The value is styled the same as the since values used in the standard library's documentation.
 ///
 /// ```
-/// #[doc_item::since("1.2.0")]
+/// #[doc_item::since(content="1.2.0")]
 /// pub fn foo() {}
 /// ```
 #[proc_macro_attribute]
