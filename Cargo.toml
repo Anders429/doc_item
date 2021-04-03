@@ -1,6 +1,6 @@
 [package]
 name = "doc_item"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Anders Evensen"]
 edition = "2018"
 description = "Attributes for item-level documentation customization."
