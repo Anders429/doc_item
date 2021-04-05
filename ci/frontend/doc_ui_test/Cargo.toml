@@ -6,4 +6,5 @@ edition = "2018"
 
 [dependencies]
 fantoccini = "0.17.3"
+substring = "1.4.5"
 tokio = {version="1.2.0", features=["full"]}
