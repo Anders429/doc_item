@@ -1,5 +1,6 @@
 use fantoccini::{Client, ClientBuilder, Locator};
 use std::{env::current_dir, path::Path};
+use substring::Substring;
 
 async fn test_docbox(client: &mut Client, prev_element_text: &str) -> Result<(), Box<dyn std::error::Error>> {
     // Check contents.
