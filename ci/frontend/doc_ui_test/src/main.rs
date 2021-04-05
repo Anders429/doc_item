@@ -18,7 +18,7 @@ async fn test_docbox_in_band(client: &mut Client, prev_element_text: &str) -> Re
     assert_eq!(item_info.html(false).await.unwrap(), "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>");
     // Check location.
     let mut prev_element = item_info.find(Locator::XPath("./preceding-sibling::*[1]/*[@class=\"in-band\"]")).await?;
-    assert_eq!(prev_element.text().await.unwrap(), prev_element_text);
+    assert_eq!(prev_element.text().await.unwrap().substring(0, prev_element_text.chars().count()), prev_element_text);
     
     Ok(())
 }
