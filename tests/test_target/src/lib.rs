@@ -37,7 +37,7 @@ pub static STATIC: usize = 0;
 #[since("1.0.0")]
 #[semi_transparent]
 pub union Union {
-    a: usize,
+    pub a: usize,
 }
 
 pub struct Method {}
