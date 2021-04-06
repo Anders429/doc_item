@@ -47,6 +47,7 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
+    - run: xvfb-run chromedriver --port=4444 --disable-gpu --no-sandbox --disable-dev-shm-usage &
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
