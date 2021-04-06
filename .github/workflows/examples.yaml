@@ -1,9 +1,8 @@
 name: examples
 
 on:
-  push:
   schedule:
-    - cron: '0 3 * * *'  # Daily.
+    - cron: '0 0 * * *'  # Daily.
 
 env:
   CARGO_TERM_COLOR: always
