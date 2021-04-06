@@ -20,7 +20,7 @@ jobs:
     - uses: actions-rs/cargo@v1
       with:
         command: rustdoc
-        args: --example experimental -Z unstable-options --enable-index-page
+        args: --example experimental -- -Z unstable-options --enable-index-page
     - uses: actions-rs/cargo@v1
       with:
         command: rustdoc
