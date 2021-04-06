@@ -1,0 +1,32 @@
+name: examples
+
+on:
+  push:
+  schedule:
+    - cron: '0 3 * * *'  # Daily.
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly
+        override: true
+    - uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: --example experimental
+    - uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: --example custom_docbox -- --html-in-header examples/custom_docbox.html
+    - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc
+          destination_dir: doc_item/examples
