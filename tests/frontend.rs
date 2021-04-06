@@ -1,6 +1,8 @@
 use doc_item::*;
 use std::{env::current_dir, path::Path, process::Command};
 #[cfg(test)]
+use substring::Substring;
+#[cfg(test)]
 use thirtyfour_sync::prelude::*;
 
 #[docbox(content = "docbox content", class = "docbox")]
@@ -90,7 +92,7 @@ fn test_docbox_in_band(driver: &WebDriver, prev_element_text: &str) {
     assert_eq!(item_info.outer_html().expect("Couldn't obtain item-info's outer HTML"), "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>");
     // Check location.
     let prev_element = item_info.find_element(By::XPath("./preceding-sibling::*[1]/*[@class=\"in-band\"]")).expect(&format!("Couldn't find previous element with text: {}", prev_element_text));
-    assert_eq!(prev_element.text().expect("Couldn't obtain previous element's text"), prev_element_text);
+    assert_eq!(prev_element.text().expect("Couldn't obtain previous element's text").substring(0, prev_element_text.chars().count()), prev_element_text);
 }
 
 #[cfg(test)]
