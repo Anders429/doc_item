@@ -26,7 +26,7 @@ jobs:
         command: rustdoc
         args: --example custom_docbox -- --html-in-header examples/custom_docbox.html
     - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/doc
-          destination_dir: doc_item/examples
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/doc
+        destination_dir: doc_item/examples
