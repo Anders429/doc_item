@@ -29,3 +29,7 @@ thirtyfour_sync = "0.22.2"
 [[example]]
 name = "custom_docbox"
 crate-type = ["staticlib"]
+
+[[example]]
+name = "experimental"
+crate-type = ["staticlib"]
