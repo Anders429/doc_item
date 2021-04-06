@@ -1,6 +1,6 @@
 [package]
 name = "doc_item"
-version = "0.2.3"
+version = "0.2.4"
 authors = ["Anders Evensen"]
 edition = "2018"
 description = "Attributes for item-level documentation customization."
@@ -9,7 +9,7 @@ repository = "https://github.com/Anders429/doc_item"
 license = "MIT OR Apache-2.0"
 keywords = ["documentation", "item", "info", "msrv", "nightly"]
 categories = ["development-tools", "rust-patterns"]
-exclude = [".github/", "ci/", "examples/"]
+exclude = [".github/", "examples/"]
 
 [lib]
 proc-macro = true
