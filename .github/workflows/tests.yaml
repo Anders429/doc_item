@@ -9,6 +9,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -29,4 +30,4 @@ env:
     - uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --all-features --no-fail-fast
+        args: --all-features
