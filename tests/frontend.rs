@@ -175,7 +175,7 @@ mod frontend_test {
 
         let base_url = current_dir()
             .unwrap()
-            .join(Path::new("tests/target/doc/test_target"));
+            .join(Path::new("tests//test_target/target/doc/test_target"));
 
         // Test individual doc pages.
         driver
