@@ -78,12 +78,10 @@
 extern crate proc_macro;
 
 use darling::FromMeta;
-use once_cell::sync::Lazy;
 use proc_macro::{token_stream, TokenStream};
-use std::{str::FromStr, sync::Mutex};
+use std::str::FromStr;
 use syn::{parse_macro_input, AttributeArgs};
-
-static ID: Lazy<Mutex<usize>> = Lazy::new(|| Mutex::new(0));
+use uuid::Uuid;
 
 #[derive(FromMeta)]
 struct BoxArgs {
@@ -311,9 +309,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     // Generate a unique id for the span. This allows for easy location and removal in the case of
     // multiple `short_docbox`s being used on one item.
-    let mut id_val = ID.lock().unwrap();
-    let id = format!("short-docbox-{}", id_val);
-    *id_val += 1;
+    let id = Uuid::new_v4();
 
     // Insert the short box.
     let short_docbox = &format!(
