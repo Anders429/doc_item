@@ -267,7 +267,7 @@ mod frontend_test {
                 base_url.join("module/index.html").to_str().unwrap()
             ))
             .unwrap();
-        test_docbox_in_band(&driver, "Module lib::module");
+        test_docbox_in_band(&driver, "Module test_target::module");
         test_since_out_of_band(&driver);
 
         driver
