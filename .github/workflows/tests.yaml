@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  frontend-test:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,30 +27,7 @@ jobs:
       with:
         toolchain: ${{ matrix.rust }}
         override: true
-        components: rust-docs
-    - name: Build docs
-      working-directory: ./ci/frontend/test_target
-      run: cargo doc
-    - name: Run test
-      working-directory: ./ci/frontend/doc_ui_test
-      run: cargo run
-
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        rust:
-          - stable
-          - beta
-          - nightly
-          - 1.50.0
-      fail-fast: false
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: ${{ matrix.rust }}
-        override: true
     - uses: actions-rs/cargo@v1
       with:
         command: test
+        args: --all-features

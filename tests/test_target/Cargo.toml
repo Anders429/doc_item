@@ -5,4 +5,4 @@ authors = ["Anders Evensen"]
 edition = "2018"
 
 [dependencies]
-doc_item = {path = "../../.."}
+doc_item = {path = "../.."}
