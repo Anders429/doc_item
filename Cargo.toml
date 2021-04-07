@@ -24,7 +24,7 @@ uuid = {version="0.8.2", default-features=false, features=["v4"]}
 
 [dev-dependencies]
 substring = "1.4.5"
-thirtyfour_sync = "0.22.2"
+thirtyfour_sync = "0.23.0"
 
 [[example]]
 name = "custom_docbox"
