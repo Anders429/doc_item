@@ -19,11 +19,15 @@ jobs:
     - uses: actions-rs/cargo@v1
       with:
         command: rustdoc
-        args: --example experimental -- -Z unstable-options --enable-index-page
+        args: --example experimental
     - uses: actions-rs/cargo@v1
       with:
         command: rustdoc
-        args: --example custom_docbox -- --html-in-header examples/custom_docbox.html -Z unstable-options --enable-index-page
+        args: --example custom_docbox -- --html-in-header examples/custom_docbox.html
+    - uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: -- -Z unstable-options --enable-index-page
     - uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
