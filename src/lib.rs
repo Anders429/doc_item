@@ -401,7 +401,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 mod tests {
-    #[rustversion::nightly]
+    #[rustversion::attr(not(nightly), ignore)]
     #[test]
     fn docbox_ui() {
         let t = trybuild::TestCases::new();
