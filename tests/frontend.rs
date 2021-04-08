@@ -1,3 +1,4 @@
+use indoc::indoc;
 use std::{env::current_dir, path::Path, process::Command};
 use substring::Substring;
 use thirtyfour_sync::prelude::*;
@@ -154,11 +155,8 @@ fn test_semi_transparent_item(driver: &WebDriver, link_text: &str) {
     );
 }
 
-// This test requires an external `chromedriver` to be running on port `4444`.
-//
-// To run the test, set up a `chromedriver` and then activate the test by setting the `frontend_test` feature.
 #[test]
-#[cfg_attr(not(feature = "frontend_test"), ignore)]
+#[cfg_attr(not(feature = "frontend_test"), ignore = "Requires a `chromedriver` instance to be running on port 4444. Set up driver and enable feature `frontend_test` to run.")]
 fn frontend() {
     // Compile docs.
     Command::new("cargo")
@@ -231,9 +229,10 @@ fn frontend() {
             base_url.join("union.Union.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust union\">pub union Union {
-// some fields omitted
-}</pre></div>");
+    test_docbox_html(&driver, indoc!{"
+        <div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust union\">pub union Union {
+            // some fields omitted
+        }</pre></div>"});
     test_since_out_of_band(&driver);
 
     driver
