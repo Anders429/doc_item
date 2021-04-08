@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["custom_docbox","experimental"];
+window.ALL_CRATES = ["custom_docbox","doc_item","experimental"];
