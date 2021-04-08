@@ -1,5 +1,0 @@
-error: Unknown field: `invalid`
- --> $DIR/invalid_argument.rs:3:10
-  |
-3 | #[docbox(invalid="argument")]
-  |          ^^^^^^^^^^^^^^^^^^

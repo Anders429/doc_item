@@ -20,12 +20,12 @@ frontend_test = []
 [dependencies]
 darling = "0.12.2"
 syn = {version="1.0.68", default-features=false, features=["derive", "parsing", "proc-macro"]}
-trybuild = "1.0.41"
 uuid = {version="0.8.2", default-features=false, features=["v4"]}
 
 [dev-dependencies]
 substring = "1.4.5"
 thirtyfour_sync = "0.23.0"
+trybuild = "1.0.41"
 
 [[example]]
 name = "custom_docbox"
