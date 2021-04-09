@@ -389,7 +389,12 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
 /// ```
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let since_args = SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
+    let since_args = match SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
+        Ok(args) => args,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
 
     let mut result = TokenStream::new();
 
@@ -422,5 +427,12 @@ mod tests {
     #[serial]
     fn short_docbox_ui() {
         trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
+    }
+
+    #[rustversion::attr(not(nightly), ignore)]
+    #[test]
+    #[serial]
+    fn since_ui() {
+        trybuild::TestCases::new().compile_fail("tests/ui/since/*.rs");
     }
 }
