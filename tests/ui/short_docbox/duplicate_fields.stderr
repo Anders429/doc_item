@@ -1,0 +1,5 @@
+error: Duplicate field `content`
+ --> $DIR/duplicate_fields.rs:3:37
+  |
+3 | #[short_docbox(content="content 1", content="content 2")]
+  |                                     ^^^^^^^^^^^^^^^^^^^

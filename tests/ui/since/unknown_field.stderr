@@ -1,0 +1,5 @@
+error: Unknown field: `invalid`
+ --> $DIR/unknown_field.rs:3:9
+  |
+3 | #[since(invalid="field")]
+  |         ^^^^^^^^^^^^^^^

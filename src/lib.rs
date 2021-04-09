@@ -220,7 +220,12 @@ fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
 /// will result in the `"portability"` docbox being displayed above the `"unstable"` docbox.
 #[proc_macro_attribute]
 pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
+    let box_args = match BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
+        Ok(args) => args,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
 
     let mut result = TokenStream::new();
 
@@ -301,7 +306,12 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 /// short docbox.
 #[proc_macro_attribute]
 pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
+    let box_args = match BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
+        Ok(args) => args,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
 
     let mut result = TokenStream::new();
     let mut item_iter = item.clone().into_iter();
@@ -379,7 +389,12 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
 /// ```
 #[proc_macro_attribute]
 pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let since_args = SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
+    let since_args = match SinceArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
+        Ok(args) => args,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
 
     let mut result = TokenStream::new();
 
@@ -394,4 +409,30 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     );
 
     result
+}
+
+#[cfg(test)]
+mod tests {
+    use serial_test::serial;
+
+    #[rustversion::attr(not(nightly), ignore)]
+    #[test]
+    #[serial]
+    fn docbox_ui() {
+        trybuild::TestCases::new().compile_fail("tests/ui/docbox/*.rs");
+    }
+
+    #[rustversion::attr(not(nightly), ignore)]
+    #[test]
+    #[serial]
+    fn short_docbox_ui() {
+        trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
+    }
+
+    #[rustversion::attr(not(nightly), ignore)]
+    #[test]
+    #[serial]
+    fn since_ui() {
+        trybuild::TestCases::new().compile_fail("tests/ui/since/*.rs");
+    }
 }
