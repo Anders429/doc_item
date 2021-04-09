@@ -410,8 +410,8 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 mod tests {
     use safe_lock::SafeLock;
 
-    // trybuild::TestCases is shared between tests, since they can only run one at a time anyway
-    // due to a limitation in trybuild.
+    // `trybuild` can only be run sequentially, since running in parallel causes issues due to the
+    // tests sharing the same directory.
     static UI_LOCK: SafeLock = SafeLock::new();
 
     #[rustversion::attr(not(nightly), ignore)]
