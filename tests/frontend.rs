@@ -156,7 +156,10 @@ fn test_semi_transparent_item(driver: &WebDriver, link_text: &str) {
 }
 
 #[test]
-#[cfg_attr(not(feature = "frontend_test"), ignore = "Requires a `chromedriver` instance to be running on port 4444. Set up driver and enable feature `frontend_test` to run.")]
+#[cfg_attr(
+    not(feature = "frontend_test"),
+    ignore = "Requires a `chromedriver` instance to be running on port 4444. Set up driver and enable feature `frontend_test` to run."
+)]
 fn frontend() {
     // Compile docs.
     Command::new("cargo")
@@ -229,10 +232,13 @@ fn frontend() {
             base_url.join("union.Union.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox_html(&driver, indoc!{"
+    test_docbox_html(
+        &driver,
+        indoc! {"
         <div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust union\">pub union Union {
             // some fields omitted
-        }</pre></div>"});
+        }</pre></div>"},
+    );
     test_since_out_of_band(&driver);
 
     driver
@@ -281,10 +287,12 @@ fn frontend() {
     test_since_out_of_band(&driver);
 
     // Test main doc page.
-    driver.get(&format!(
-        "file://{}",
-        base_url.join("index.html").to_str().unwrap()
-    )).unwrap();
+    driver
+        .get(&format!(
+            "file://{}",
+            base_url.join("index.html").to_str().unwrap()
+        ))
+        .unwrap();
     test_short_docbox(&driver, "function");
     test_short_docbox(&driver, "Struct");
     test_short_docbox(&driver, "Enum");
