@@ -408,23 +408,19 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 mod tests {
-    use safe_lock::SafeLock;
-
-    // `trybuild` can only be run sequentially, since running in parallel causes issues due to the
-    // tests sharing the same directory.
-    static UI_LOCK: SafeLock = SafeLock::new();
+    use serial_test::serial;
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
+    #[serial]
     fn docbox_ui() {
-        let _guard = UI_LOCK.lock();
         trybuild::TestCases::new().compile_fail("tests/ui/docbox/*.rs");
     }
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
+    #[serial]
     fn short_docbox_ui() {
-        let _guard = UI_LOCK.lock();
         trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
     }
 }
