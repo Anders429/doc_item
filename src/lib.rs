@@ -408,29 +408,23 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 mod tests {
-    use once_cell::sync::Lazy;
-    use std::sync::Mutex;
+    use safe_lock::SafeLock;
 
     // trybuild::TestCases is shared between tests, since they can only run one at a time anyway
     // due to a limitation in trybuild.
-    static UI_RUNNER: Lazy<Mutex<trybuild::TestCases>> =
-        Lazy::new(|| Mutex::new(trybuild::TestCases::new()));
+    static UI_LOCK: SafeLock = SafeLock::new();
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
     fn docbox_ui() {
-        UI_RUNNER
-            .lock()
-            .unwrap()
-            .compile_fail("tests/ui/docbox/*.rs");
+        let _guard = UI_LOCK.lock();
+        trybuild::TestCases::new().compile_fail("tests/ui/docbox/*.rs");
     }
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
     fn short_docbox_ui() {
-        UI_RUNNER
-            .lock()
-            .unwrap()
-            .compile_fail("tests/ui/short_docbox/*.rs");
+        let _guard = UI_LOCK.lock();
+        trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
     }
 }
