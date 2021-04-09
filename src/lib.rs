@@ -222,7 +222,9 @@ fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
 pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     let box_args = match BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
         Ok(args) => args,
-        Err(err) => {return err.write_errors().into();}
+        Err(err) => {
+            return err.write_errors().into();
+        }
     };
 
     let mut result = TokenStream::new();
@@ -304,7 +306,12 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 /// short docbox.
 #[proc_macro_attribute]
 pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let box_args = BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)).unwrap();
+    let box_args = match BoxArgs::from_list(&parse_macro_input!(attr as AttributeArgs)) {
+        Ok(args) => args,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
 
     let mut result = TokenStream::new();
     let mut item_iter = item.clone().into_iter();
@@ -401,11 +408,29 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 mod tests {
+    use once_cell::sync::Lazy;
+    use std::sync::Mutex;
+
+    // trybuild::TestCases is shared between tests, since they can only run one at a time anyway
+    // due to a limitation in trybuild.
+    static UI_RUNNER: Lazy<Mutex<trybuild::TestCases>> =
+        Lazy::new(|| Mutex::new(trybuild::TestCases::new()));
+
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
     fn docbox_ui() {
-        let t = trybuild::TestCases::new();
-        t.compile_fail("tests/ui/docbox/*.rs");
+        UI_RUNNER
+            .lock()
+            .unwrap()
+            .compile_fail("tests/ui/docbox/*.rs");
+    }
+
+    #[rustversion::attr(not(nightly), ignore)]
+    #[test]
+    fn short_docbox_ui() {
+        UI_RUNNER
+            .lock()
+            .unwrap()
+            .compile_fail("tests/ui/short_docbox/*.rs");
     }
 }
-
