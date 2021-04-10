@@ -18,8 +18,8 @@ proc-macro = true
 frontend_test = []
 
 [dependencies]
-darling = "0.12.2"
-syn = {version="1.0.68", default-features=false, features=["derive", "parsing", "proc-macro"]}
+darling = "0.12.3"
+syn = {version="1.0.69", default-features=false, features=["derive", "parsing", "proc-macro"]}
 uuid = {version="0.8.2", default-features=false, features=["v4"]}
 
 [dev-dependencies]
