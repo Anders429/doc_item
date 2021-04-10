@@ -9,7 +9,7 @@ repository = "https://github.com/Anders429/doc_item"
 license = "MIT OR Apache-2.0"
 keywords = ["documentation", "item", "info", "msrv", "nightly"]
 categories = ["development-tools", "rust-patterns"]
-exclude = [".github/"]
+exclude = [".github/", "examples/", "tests/"]
 
 [lib]
 proc-macro = true
