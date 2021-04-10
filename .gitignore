@@ -1,5 +1,3 @@
-/target
-Cargo.lock
-/tests/test_target/target
-/tests/test_target/Cargo.lock
+**/target
+**/Cargo.lock
 chromedriver.exe
