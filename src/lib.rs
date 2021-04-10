@@ -410,24 +410,3 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     result
 }
-
-#[cfg(test)]
-mod tests {
-    #[rustversion::attr(not(nightly), ignore)]
-    #[test]
-    fn docbox_ui() {
-        trybuild::TestCases::new().compile_fail("tests/ui/docbox/*.rs");
-    }
-
-    #[rustversion::attr(not(nightly), ignore)]
-    #[test]
-    fn short_docbox_ui() {
-        trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
-    }
-
-    #[rustversion::attr(not(nightly), ignore)]
-    #[test]
-    fn since_ui() {
-        trybuild::TestCases::new().compile_fail("tests/ui/since/*.rs");
-    }
-}
