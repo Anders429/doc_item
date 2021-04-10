@@ -413,25 +413,20 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 mod tests {
-    use serial_test::serial;
-
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
-    #[serial]
     fn docbox_ui() {
         trybuild::TestCases::new().compile_fail("tests/ui/docbox/*.rs");
     }
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
-    #[serial]
     fn short_docbox_ui() {
         trybuild::TestCases::new().compile_fail("tests/ui/short_docbox/*.rs");
     }
 
     #[rustversion::attr(not(nightly), ignore)]
     #[test]
-    #[serial]
     fn since_ui() {
         trybuild::TestCases::new().compile_fail("tests/ui/since/*.rs");
     }
