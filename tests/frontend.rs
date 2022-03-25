@@ -283,13 +283,13 @@ fn frontend() {
     // test_docbox(&driver, "type Type = usize;");
     // test_since_out_of_band(&driver);
 
-    // // Test main doc page.
-    // driver
-    //     .get(&format!(
-    //         "file://{}",
-    //         base_url.join("index.html").to_str().unwrap()
-    //     ))
-    //     .unwrap();
+    // Test main doc page.
+    driver
+        .get(&format!(
+            "file://{}",
+            base_url.join("index.html").to_str().unwrap()
+        ))
+        .unwrap();
     // test_short_docbox(&driver, "function");
     // test_short_docbox(&driver, "Struct");
     // test_short_docbox(&driver, "Enum");
