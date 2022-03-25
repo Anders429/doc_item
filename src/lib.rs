@@ -367,7 +367,7 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // Insert script to gray the text.
     prepend_to_doc(
         &mut result,
-        "<script>var row=document.currentScript.parentElement.parentElement;if (row.tagName=='TR'){row.classList.add('unstable');}document.currentScript.remove();</script>",
+        "<script>document.currentScript.parentElement.parentElement.getElementsByClassName('module-item')[0].classList.add('unstable');document.currentScript.remove();</script>",
         &mut item_iter
     );
 

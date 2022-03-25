@@ -147,12 +147,9 @@ fn test_semi_transparent_item(driver: &WebDriver, link_text: &str) {
         .find_element(By::LinkText(link_text))
         .expect(&format!("Couldn't find link with text {}", link_text));
     let docblock = link
-        .find_element(By::XPath("./parent::*[1]/parent::*[1]"))
-        .expect("Couldn't find docblock-short");
-    assert_eq!(
-        docblock.get_attribute("class").unwrap().unwrap(),
-        "module-item unstable"
-    );
+        .find_element(By::XPath("./parent::*[1]"))
+        .expect("Couldn't find module-item");
+    assert!(docblock.get_attribute("class").unwrap().unwrap().split_ascii_whitespace().collect::<Vec<_>>().contains(&"unstable"));
 }
 
 #[test]
