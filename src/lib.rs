@@ -80,7 +80,6 @@ use darling::FromMeta;
 use proc_macro::{token_stream, TokenStream};
 use std::str::FromStr;
 use syn::{parse_macro_input, AttributeArgs};
-use uuid::Uuid;
 
 #[derive(FromMeta)]
 struct BoxArgs {
@@ -147,20 +146,6 @@ fn prepend_to_doc(result: &mut TokenStream, value: &str, item_iter: &mut token_s
             return;
         }
     }
-}
-
-fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
-    while let Some(token) = item_iter.next() {
-        if token.to_string() == "#" {
-            let attribute = item_iter.next().unwrap().to_string();
-            if attribute.starts_with("[doc =") {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-    false
 }
 
 /// Adds a docbox to the item's item-info.
@@ -233,7 +218,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.tagName!='TD'){{box.parentElement.before(box);}}else{{box.remove();}}document.currentScript.remove();</script>\"]",
+            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains('docblock-short')){{box.remove();}}else if(box.parentElement.parentElement.parentElement.classList.contains('content')){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();</script>\"]",
             box_args.class,
             box_args.content
         ))
@@ -318,7 +303,7 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     // Insert the short box.
     let short_docbox = &format!(
-        "<span class='stab {}'>{}</span><script>var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item');if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();</script>",
+        "<script>document.currentScript.remove();</script><span class='stab {}'>{}</span><script>var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item');if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();</script>",
         box_args.class, box_args.content
     );
     prepend_to_doc(&mut result, short_docbox, &mut item_iter);
