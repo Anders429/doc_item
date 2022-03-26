@@ -80,7 +80,6 @@ use darling::FromMeta;
 use proc_macro::{token_stream, TokenStream};
 use std::str::FromStr;
 use syn::{parse_macro_input, AttributeArgs};
-use uuid::Uuid;
 
 #[derive(FromMeta)]
 struct BoxArgs {
@@ -147,20 +146,6 @@ fn prepend_to_doc(result: &mut TokenStream, value: &str, item_iter: &mut token_s
             return;
         }
     }
-}
-
-fn item_has_doc(mut item_iter: token_stream::IntoIter) -> bool {
-    while let Some(token) = item_iter.next() {
-        if token.to_string() == "#" {
-            let attribute = item_iter.next().unwrap().to_string();
-            if attribute.starts_with("[doc =") {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-    false
 }
 
 /// Adds a docbox to the item's item-info.
@@ -233,7 +218,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.tagName!='TD'){{box.parentElement.before(box);}}else{{box.remove();}}document.currentScript.remove();</script>\"]",
+            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains('docblock-short')){{box.remove();}}else if(box.parentElement.parentElement.classList.contains('top-doc')){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();</script>\"]",
             box_args.class,
             box_args.content
         ))
@@ -316,34 +301,14 @@ pub fn short_docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut result = TokenStream::new();
     let mut item_iter = item.clone().into_iter();
 
-    // Generate a unique id for the span. This allows for easy location and removal in the case of
-    // multiple `short_docbox`s being used on one item.
-    let id = Uuid::new_v4();
-
     // Insert the short box.
     let short_docbox = &format!(
-        "<script>document.currentScript.remove();</script><span class='stab {}' id='{}'>{}</span>",
-        box_args.class, id, box_args.content
+        "<script>document.currentScript.remove();</script><span class='stab {}'>{}</span><script>var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item');if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();</script>",
+        box_args.class, box_args.content
     );
-    if item_has_doc(item.into_iter()) {
-        prepend_to_doc(&mut result, short_docbox, &mut item_iter);
-    } else {
-        Extend::extend::<TokenStream>(
-            &mut result,
-            TokenStream::from_str(&format!("#[doc = \"{}\"]", short_docbox)).unwrap(),
-        );
-    }
-
-    // Insert short box removal script after all other attributes.
-    insert_after_attributes(
-        &mut result,
-        TokenStream::from_str(&format!(
-            "#[doc = \"\n <script>var spans=document.currentScript.parentElement.getElementsByTagName('SPAN');for (var i=0;i<spans.length;i++){{var span=spans.item(i);if (span.id=='{}'){{span.remove();break;}}}}document.currentScript.remove();</script>\"]",
-            id
-        ))
-        .unwrap(),
-        item_iter
-    );
+    prepend_to_doc(&mut result, short_docbox, &mut item_iter);
+        
+    Extend::extend::<TokenStream>(&mut result, item_iter.collect());
 
     result
 }
@@ -367,7 +332,7 @@ pub fn semi_transparent(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // Insert script to gray the text.
     prepend_to_doc(
         &mut result,
-        "<script>var row=document.currentScript.parentElement.parentElement;if (row.tagName=='TR'){row.classList.add('unstable');}document.currentScript.remove();</script>",
+        "<script>var module_items = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item'); if(module_items.length != 0){{module_items[0].classList.add('unstable');}}document.currentScript.remove();</script>",
         &mut item_iter
     );
 
@@ -401,7 +366,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{var prev=since.parentElement.previousElementSibling;while(prev.tagName!='H3'&&prev.tagName!='H4'){{prev=prev.previousElementSibling;}}prev.lastElementChild.before(since);}}}}else{{since.remove();}}document.currentScript.remove();</script>\"]",
+            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains('docblock-short')){{since.remove();}}else if(since.parentElement.parentElement.classList.contains('top-doc')){{var out_of_band = since.parentElement.parentElement.parentElement.getElementsByClassName('out-of-band')[0];out_of_band.prepend(' · ');out_of_band.prepend(since);}}else{{var rightside = since.parentElement.parentElement.getElementsByClassName('rightside')[0];rightside.prepend(' · ');rightside.prepend(since);}}document.currentScript.remove();</script>\"]",
             since_args.content
         ))
         .unwrap(),

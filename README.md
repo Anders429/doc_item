@@ -93,7 +93,7 @@ cargo rustdoc --example <example> -- --html-in-header examples/<example>.html
 ```
 
 ## Minimum Supported Rust Version
-This crate is guaranteed to function properly on `rustc 1.50.0` and up. It may compile on earlier
+This crate is guaranteed to function properly on `rustc 1.58.0` and up. It may compile on earlier
 versions, but it is not guaranteed that all features will display properly.
 
 ## Nightly Stability
