@@ -26,7 +26,7 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
         prev_element
             .text()
             .expect("Couldn't obtain previous element's text")
-            .contains(prev_element_text)
+            .contains("1.0.0")
     );
 }
 
