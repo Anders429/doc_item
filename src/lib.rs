@@ -366,7 +366,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains('docblock-short')){{since.remove();}}else if(since.parentElement.parentElement.classList.contains('top-doc')){{since.parentElement.parentElement.parentElement.getElementsByTagName('H1')[0].getElementsByClassName('out-of-band')[0].prepend(since);}}else{{since.parentElement.parentElement.getElementsByClassName('rightside')[0].prepend(since);}}document.currentScript.remove();</script>\"]",
+            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains('docblock-short')){{since.remove();}}else if(since.parentElement.parentElement.classList.contains('top-doc')){{var out_of_band = since.parentElement.parentElement.parentElement.getElementsByClassName('out-of-band')[0];out_of_band.prepend(' · ');out_of_band.prepend(since);}}else{{var rightside = since.parentElement.parentElement.getElementsByClassName('rightside')[0];rightside.prepend(' · ');rightside.prepend(since);}}document.currentScript.remove();</script>\"]",
             since_args.content
         ))
         .unwrap(),
