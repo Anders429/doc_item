@@ -155,7 +155,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub fn function()");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -164,7 +164,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub struct Struct {}");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -173,7 +173,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub enum Enum {}");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -182,7 +182,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub const CONST: usize = 0;");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -191,7 +191,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub static STATIC: usize");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -203,7 +203,7 @@ fn frontend() {
         &driver,
         "pub union Union",
     );
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -212,7 +212,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub fn method()\n1.0.0\n[src]\n[−]");
-    // test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#48\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#48\" title=\"goto source code\">[src]</a>");
 
     driver
         .get(&format!(
@@ -221,7 +221,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub trait Trait { }");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -230,7 +230,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "impl Trait for ImplTrait\n1.0.0\n[src]");
-    // test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#61\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#61\" title=\"goto source code\">[src]</a>");
 
     driver
         .get(&format!(
@@ -239,7 +239,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox_in_band(&driver, "Module test_target::module");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     driver
         .get(&format!(
@@ -248,7 +248,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "type Type = usize;");
-    // test_since_out_of_band(&driver);
+    test_since_out_of_band(&driver);
 
     // Test main doc page.
     driver

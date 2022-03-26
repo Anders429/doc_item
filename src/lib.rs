@@ -218,7 +218,7 @@ pub fn docbox(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains('docblock-short')){{box.remove();}}else if(box.parentElement.parentElement.tagName == 'DETAILS'){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();</script>\"]",
+            "#[doc = \"\n <div class='item-info'><div class='stab {}'>{}</div></div><script>var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains('docblock-short')){{box.remove();}}else if(box.parentElement.parentElement.classList.contains('top-doc')){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();</script>\"]",
             box_args.class,
             box_args.content
         ))
@@ -366,7 +366,7 @@ pub fn since(attr: TokenStream, item: TokenStream) -> TokenStream {
     insert_after_attributes(
         &mut result,
         TokenStream::from_str(&format!(
-            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if (since.parentElement.tagName!='TD'){{var header=since.parentElement.parentElement.firstElementChild;if(header.firstElementChild.tagName=='SPAN'){{header.getElementsByClassName('out-of-band')[0].prepend(since);}}else{{var prev=since.parentElement.previousElementSibling;while(prev.tagName!='H3'&&prev.tagName!='H4'){{prev=prev.previousElementSibling;}}prev.lastElementChild.before(since);}}}}else{{since.remove();}}document.currentScript.remove();</script>\"]",
+            "#[doc = \" <script>document.currentScript.remove();</script><span class='since'>{}</span><script>var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains('docblock-short')){{since.remove();}}else if(since.parentElement.parentElement.classList.contains('top-doc')){{since.parentElement.parentElement.parentElement.getElementsByTagName('H1')[0].getElementsByClassName('out-of-band')[0].prepend(since);}}else{{since.parentElement.parentElement.getElementsByClassName('rightside')[0].prepend(since);}}document.currentScript.remove();</script>\"]",
             since_args.content
         ))
         .unwrap(),
