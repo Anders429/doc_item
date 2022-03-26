@@ -1,4 +1,5 @@
 use std::{env::current_dir, path::Path, process::Command};
+use substring::Substring;
 use thirtyfour_sync::prelude::*;
 
 fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
@@ -22,10 +23,12 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
             "Couldn't find previous element with text: {}",
             prev_element_text
         ));
-    assert!(
+    assert_eq!(
         prev_element
             .text()
-            .expect("Couldn't obtain previous element's text").starts_with(prev_element_text),
+            .expect("Couldn't obtain previous element's text")
+            .substring(0, prev_element_text.len()),
+        prev_element_text
     );
 }
 
