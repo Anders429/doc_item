@@ -211,7 +211,7 @@ fn frontend() {
             base_url.join("struct.Method.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox(&driver, "pub fn method()\n1.0.0\n[src]\n[−]");
+    test_docbox(&driver, "pub fn method()");
     test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#48\" title=\"goto source code\">[src]</a>");
 
     driver
@@ -229,7 +229,7 @@ fn frontend() {
             base_url.join("struct.ImplTrait.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox(&driver, "impl Trait for ImplTrait\n1.0.0\n[src]");
+    test_docbox(&driver, "impl Trait for ImplTrait");
     test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#61\" title=\"goto source code\">[src]</a>");
 
     driver
