@@ -22,9 +22,7 @@ darling = "0.12.3"
 syn = {version="1.0.69", default-features=false, features=["derive", "parsing", "proc-macro"]}
 
 [dev-dependencies]
-indoc = "1.0.3"
 rustversion = "1.0.4"
-substring = "1.4.5"
 thirtyfour_sync = "0.23.0"
 trybuild = "1.0.42"
 
