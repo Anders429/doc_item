@@ -26,7 +26,7 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
         prev_element
             .text()
             .expect("Couldn't obtain previous element's text")
-            .contains("1.0.0")
+            .contains(prev_element_text)
     );
 }
 
@@ -74,7 +74,7 @@ fn test_since_out_of_band(driver: &WebDriver) {
     );
 }
 
-fn test_since_standalone(driver: &WebDriver, next_element_html: &str) {
+fn test_since_standalone(driver: &WebDriver) {
     let since = driver
         .find_element(By::ClassName("since"))
         .expect("Couldn't find since element");
@@ -87,12 +87,7 @@ fn test_since_standalone(driver: &WebDriver, next_element_html: &str) {
     let next_element = since
         .find_element(By::XPath("./following-sibling::*[1]"))
         .expect("Couldn't find since's next element");
-    assert_eq!(
-        next_element
-            .outer_html()
-            .expect("Couldn't get outer HTML of next element"),
-        next_element_html
-    );
+    assert!(next_element.get_attribute("class").contains("srclink"));
 }
 
 fn test_short_docbox(driver: &WebDriver, link_text: &str) {
@@ -210,7 +205,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "pub fn method()");
-    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#48\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver);
 
     driver
         .get(&format!(
@@ -228,7 +223,7 @@ fn frontend() {
         ))
         .unwrap();
     test_docbox(&driver, "impl Trait for ImplTrait");
-    test_since_standalone(&driver, "<a class=\"srclink\" href=\"../src/test_target/lib.rs.html#61\" title=\"goto source code\">[src]</a>");
+    test_since_standalone(&driver);
 
     driver
         .get(&format!(
