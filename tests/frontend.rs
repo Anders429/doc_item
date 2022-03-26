@@ -56,7 +56,7 @@ fn test_since_standalone(driver: &WebDriver) {
         "<span class=\"since\">1.0.0</span>"
     );
     let next_element = since
-        .find_element(By::XPath("./following-sibling::*[1]/*[@class=\"srclink\"]"))
+        .find_element(By::XPath("./following-sibling::*[1][@class=\"srclink\"]"))
         .expect("Couldn't find since's next element");
 }
 
