@@ -62,35 +62,6 @@ fn test_docbox_in_band(driver: &WebDriver, prev_element_text: &str) {
     );
 }
 
-fn test_docbox_html(driver: &WebDriver, prev_element_html: &str) {
-    // Check contents.
-    let item_info = driver
-        .find_element(By::ClassName("item-info"))
-        .expect(&format!(
-            "Couldn't find element with previous element text: {}",
-            prev_element_html
-        ));
-    assert_eq!(
-        item_info
-            .outer_html()
-            .expect("Couldn't obtain item-info's outer HTML"),
-        "<div class=\"item-info\"><div class=\"stab docbox\">docbox content</div></div>"
-    );
-    // Check location.
-    let prev_element = item_info
-        .find_element(By::XPath("./preceding-sibling::*[1]"))
-        .expect(&format!(
-            "Couldn't find previous element with HTML: {}",
-            prev_element_html
-        ));
-    assert_eq!(
-        prev_element
-            .outer_html()
-            .expect("Couldn't obtain previous element's outer HTML"),
-        prev_element_html
-    );
-}
-
 fn test_since_out_of_band(driver: &WebDriver) {
     let out_of_band = driver
         .find_element(By::ClassName("out-of-band"))
@@ -193,7 +164,7 @@ fn frontend() {
             base_url.join("struct.Struct.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust struct\">pub struct Struct {}</pre></div>");
+    test_docbox(&driver, "pub struct Struct {}");
     // test_since_out_of_band(&driver);
 
     driver
@@ -229,12 +200,9 @@ fn frontend() {
             base_url.join("union.Union.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox_html(
+    test_docbox(
         &driver,
-        indoc! {"
-        <div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust union\">pub union Union {
-            // some fields omitted
-        }</pre></div>"},
+        {"pub union Union"},
     );
     // test_since_out_of_band(&driver);
 
@@ -253,7 +221,7 @@ fn frontend() {
             base_url.join("trait.Trait.html").to_str().unwrap()
         ))
         .unwrap();
-    test_docbox_html(&driver, "<div class=\"docblock type-decl hidden-by-usual-hider\"><pre class=\"rust trait\">pub trait Trait { }</pre></div>");
+    test_docbox(&driver, "pub trait Trait { }");
     // test_since_out_of_band(&driver);
 
     driver
