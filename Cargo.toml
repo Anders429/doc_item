@@ -18,13 +18,13 @@ proc-macro = true
 frontend_test = []
 
 [dependencies]
-darling = "0.12.3"
-syn = {version="1.0.69", default-features=false, features=["derive", "parsing", "proc-macro"]}
+darling = "0.13.1"
+syn = {version="1.0.89", default-features=false, features=["derive", "parsing", "proc-macro"]}
 
 [dev-dependencies]
-rustversion = "1.0.4"
-thirtyfour_sync = "0.23.0"
-trybuild = "1.0.42"
+rustversion = "1.0.6"
+thirtyfour_sync = "0.27.1"
+trybuild = "1.0.56"
 
 [[example]]
 name = "custom_docbox"
