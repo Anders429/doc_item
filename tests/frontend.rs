@@ -87,7 +87,7 @@ fn test_since_standalone(driver: &WebDriver) {
     let next_element = since
         .find_element(By::XPath("./following-sibling::*[1]"))
         .expect("Couldn't find since's next element");
-    assert!(next_element.get_attribute("class").contains("srclink"));
+    assert!(next_element.get_attribute("class").unwrap().unwrap().contains("srclink"));
 }
 
 fn test_short_docbox(driver: &WebDriver, link_text: &str) {
