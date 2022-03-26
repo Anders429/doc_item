@@ -202,7 +202,9 @@ fn frontend() {
         .unwrap();
     test_docbox(
         &driver,
-        {"pub union Union"},
+        {indoc!("pub union Union {
+            // some fields omitted
+        }")},
     );
     // test_since_out_of_band(&driver);
 
