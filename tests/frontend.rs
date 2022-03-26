@@ -24,11 +24,10 @@ fn test_docbox(driver: &WebDriver, prev_element_text: &str) {
             "Couldn't find previous element with text: {}",
             prev_element_text
         ));
-    assert_eq!(
+    assert!(
         prev_element
             .text()
-            .expect("Couldn't obtain previous element's text"),
-        prev_element_text
+            .expect("Couldn't obtain previous element's text").starts_with(prev_element_text),
     );
 }
 
@@ -202,9 +201,7 @@ fn frontend() {
         .unwrap();
     test_docbox(
         &driver,
-        {indoc!("pub union Union {
-            // some fields omitted
-        }")},
+        "pub union Union",
     );
     // test_since_out_of_band(&driver);
 
