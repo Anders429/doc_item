@@ -87,8 +87,8 @@ fn test_semi_transparent_item(driver: &WebDriver, link_text: &str) {
 
 #[test]
 #[cfg_attr(
-    not(feature = "frontend_test"),
-    ignore = "Requires a `chromedriver` instance to be running on port 4444. Set up driver and enable feature `frontend_test` to run."
+    not(frontend_test),
+    ignore = "Requires a `chromedriver` instance to be running on port 4444. Set up driver and pass `--cfg frontend_test` to run."
 )]
 fn frontend() {
     // Compile docs.

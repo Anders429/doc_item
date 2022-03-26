@@ -14,9 +14,6 @@ exclude = [".github/", "tests/"]
 [lib]
 proc-macro = true
 
-[features]
-frontend_test = []
-
 [dependencies]
 darling = "0.13.1"
 syn = {version="1.0.89", default-features=false, features=["derive", "parsing", "proc-macro"]}
