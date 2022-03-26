@@ -131,13 +131,13 @@ fn test_short_docbox(driver: &WebDriver, link_text: &str) {
     let link = driver
         .find_element(By::LinkText(link_text))
         .expect(&format!("Couldn't find link with text {}", link_text));
-    let docblock_short = link
-        .find_element(By::XPath("./parent::*[1]/following-sibling::*[1]"))
-        .expect("Couldn't find docblock-short");
+    let span = link
+        .find_element(By::XPath("./following-sibling::*[1]"))
+        .expect("Couldn't find span");
     assert_eq!(
-        docblock_short
+        span
             .text()
-            .expect("Couldn't get docblock_short's text"),
+            .expect("Couldn't get span's text"),
         "short docbox content"
     );
 }
@@ -290,15 +290,15 @@ fn frontend() {
             base_url.join("index.html").to_str().unwrap()
         ))
         .unwrap();
-    // test_short_docbox(&driver, "function");
-    // test_short_docbox(&driver, "Struct");
-    // test_short_docbox(&driver, "Enum");
-    // test_short_docbox(&driver, "CONST");
-    // test_short_docbox(&driver, "STATIC");
-    // test_short_docbox(&driver, "Union");
-    // test_short_docbox(&driver, "Trait");
-    // test_short_docbox(&driver, "module");
-    // test_short_docbox(&driver, "Type");
+    test_short_docbox(&driver, "function");
+    test_short_docbox(&driver, "Struct");
+    test_short_docbox(&driver, "Enum");
+    test_short_docbox(&driver, "CONST");
+    test_short_docbox(&driver, "STATIC");
+    test_short_docbox(&driver, "Union");
+    test_short_docbox(&driver, "Trait");
+    test_short_docbox(&driver, "module");
+    test_short_docbox(&driver, "Type");
 
     test_semi_transparent_item(&driver, "function");
     test_semi_transparent_item(&driver, "Struct");
