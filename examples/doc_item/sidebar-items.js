@@ -1,1 +1,1 @@
-initSidebarItems({"attr":[["docbox","Adds a docbox to the item’s item-info."],["semi_transparent","Makes an item semi-transparent in module lists."],["short_docbox","Adds a short docbox to the item in module lists."],["since","Adds a minimal version to an item."]]});
+window.SIDEBAR_ITEMS = {"attr":[["docbox","Adds a docbox to the item’s item-info."],["semi_transparent","Makes an item semi-transparent in module lists."],["short_docbox","Adds a short docbox to the item in module lists."],["since","Adds a minimal version to an item."]]};
