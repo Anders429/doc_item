@@ -3,7 +3,7 @@
 module lists, alerting the user to important information about the item. A common use case is to
 alert about an experimental item. This can be done as follows:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span><span class="op">=</span><span class="string">&quot;Experimental&quot;</span>, <span class="ident">class</span><span class="op">=</span><span class="string">&quot;unstable&quot;</span>)]</span>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;Experimental&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;unstable&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}</code></pre></div>
 <p>It is good practice to keep the <code>content</code> concise, as short docblocks have limited space. When
 used with a <a href="attr.docbox.html" title="docbox"><code>docbox</code></a> attribute, the <code>short_docbox</code>’s content should be an abbreviated form of
@@ -16,7 +16,7 @@ predefined class by rustdoc. Other predefined classes include <code>&quot;portab
 <code>--html-in-header</code> rustdoc flag.</p>
 <p>Provide a custom class like this:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span><span class="op">=</span><span class="string">&quot;Custom&quot;</span>, <span class="ident">class</span><span class="op">=</span><span class="string">&quot;custom&quot;</span>)]</span>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;Custom&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;custom&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}</code></pre></div>
 <p>Define the custom class in a separate file, potentially named <code>custom.html</code>.</p>
 <div class="example-wrap"><pre class="language-html"><code>&lt;style&gt;
@@ -31,9 +31,9 @@ predefined class by rustdoc. Other predefined classes include <code>&quot;portab
 documentation, <code>doc_item</code> will insert the docboxes in the <em>reverse</em> order that they are provided
 in. For example:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span><span class="op">=</span><span class="string">&quot;Second&quot;</span>, <span class="ident">class</span><span class="op">=</span><span class="string">&quot;unstable&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span><span class="op">=</span><span class="string">&quot;First&quot;</span>, <span class="ident">class</span><span class="op">=</span><span class="string">&quot;portability&quot;</span>)]</span>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;Second&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;unstable&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;First&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;portability&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}</code></pre></div>
 <p>will result in the <code>&quot;portability&quot;</code> short docbox being displayed to the left of the <code>&quot;unstable&quot;</code>
 short docbox.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (20ffea693 2022-08-11)" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (f22819bcc 2022-08-12)" ></div></body></html>
