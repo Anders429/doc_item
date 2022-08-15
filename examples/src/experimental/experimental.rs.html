@@ -9,16 +9,16 @@
 <span id="9">9</span>
 <span id="10">10</span>
 <span id="11">11</span>
-</pre><pre class="rust"><code><span class="doccomment">/// This is an experimental API.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The docbox will indicate the function is experimental. It will also appear semi-transparent on</span>
-<span class="doccomment">/// module lists.</span>
-<span class="attribute">#[<span class="ident">doc_item::docbox</span>(
-    <span class="ident">content</span> = <span class="string">&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;</span>,
-    <span class="ident">class</span> = <span class="string">&quot;unstable&quot;</span>
-)]</span>
-<span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span> = <span class="string">&quot;Experimental&quot;</span>, <span class="ident">class</span> = <span class="string">&quot;unstable&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc_item::semi_transparent</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}
+</pre><pre class="rust"><code><span class="doccomment">/// This is an experimental API.
+///
+/// The docbox will indicate the function is experimental. It will also appear semi-transparent on
+/// module lists.
+</span><span class="attribute">#[doc_item::docbox(
+    content = <span class="string">&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;</span>,
+    class = <span class="string">&quot;unstable&quot;
+</span>)]</span>
+<span class="attribute">#[doc_item::short_docbox(content = <span class="string">&quot;Experimental&quot;</span>, class = <span class="string">&quot;unstable&quot;</span>)]</span>
+<span class="attribute">#[doc_item::semi_transparent]</span>
+<span class="kw">pub fn </span>foo() {}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="experimental" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (f22819bcc 2022-08-12)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="experimental" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (801821d15 2022-08-14)" ></div></body></html>

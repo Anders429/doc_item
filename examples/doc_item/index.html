@@ -14,24 +14,24 @@ text within docboxes.</p>
 <a href="https://rustc-dev-guide.rust-lang.org/stability.html#unstable"><code>#[unstable]</code></a> attribute) can be
 done as follows:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// This is an experimental API.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The docbox will indicate the function is experimental. It will also appear semi-transparent on</span>
-<span class="doccomment">/// module lists.</span>
-<span class="attribute">#[<span class="ident">doc_item::docbox</span>(<span class="ident">content</span>=<span class="string">&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;unstable&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;Experimental&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;unstable&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc_item::semi_transparent</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}</code></pre></div>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// This is an experimental API.
+///
+/// The docbox will indicate the function is experimental. It will also appear semi-transparent on
+/// module lists.
+</span><span class="attribute">#[doc_item::docbox(content=<span class="string">&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;</span>, class=<span class="string">&quot;unstable&quot;</span>)]</span>
+<span class="attribute">#[doc_item::short_docbox(content=<span class="string">&quot;Experimental&quot;</span>, class=<span class="string">&quot;unstable&quot;</span>)]</span>
+<span class="attribute">#[doc_item::semi_transparent]</span>
+<span class="kw">pub fn </span>foo() {}</code></pre></div>
 <h4 id="creating-custom-styled-docboxes"><a href="#creating-custom-styled-docboxes">Creating Custom-Styled Docboxes</a></h4>
 <p>You can create your own custom styles to customize the display of docboxes. Define your item’s
 docbox as follows:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// An item with a custom docbox.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The docbox will be a different color.</span>
-<span class="attribute">#[<span class="ident">doc_item::docbox</span>(<span class="ident">content</span>=<span class="string">&quot;A custom docbox&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;custom&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc_item::short_docbox</span>(<span class="ident">content</span>=<span class="string">&quot;Custom&quot;</span>, <span class="ident">class</span>=<span class="string">&quot;custom&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foo</span>() {}</code></pre></div>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// An item with a custom docbox.
+///
+/// The docbox will be a different color.
+</span><span class="attribute">#[doc_item::docbox(content=<span class="string">&quot;A custom docbox&quot;</span>, class=<span class="string">&quot;custom&quot;</span>)]</span>
+<span class="attribute">#[doc_item::short_docbox(content=<span class="string">&quot;Custom&quot;</span>, class=<span class="string">&quot;custom&quot;</span>)]</span>
+<span class="kw">pub fn </span>foo() {}</code></pre></div>
 <p>Next, create a style definition in a separate HTML file.</p>
 <div class="example-wrap"><pre class="language-html"><code>&lt;style&gt;
     .custom {
@@ -47,4 +47,4 @@ rustdoc-args = [ &quot;--html-in-header&quot;, &quot;custom.html&quot; ]</code><
 </div></div><div class="item-row"><div class="item-left module-item"><a class="attr" href="attr.semi_transparent.html" title="doc_item::semi_transparent attr">semi_transparent</a></div><div class="item-right docblock-short"><p>Makes an item semi-transparent in module lists.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="attr" href="attr.short_docbox.html" title="doc_item::short_docbox attr">short_docbox</a></div><div class="item-right docblock-short"><p>Adds a short docbox to the item in module lists.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="attr" href="attr.since.html" title="doc_item::since attr">since</a></div><div class="item-right docblock-short"><p>Adds a minimal version to an item.</p>
-</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (f22819bcc 2022-08-12)" ></div></body></html>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (801821d15 2022-08-14)" ></div></body></html>

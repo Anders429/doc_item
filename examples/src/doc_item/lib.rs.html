@@ -375,382 +375,382 @@
 <span id="375">375</span>
 <span id="376">376</span>
 <span id="377">377</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Attributes for item-level documentation customization.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This crate provides attributes for adding various features to items when they are documented by</span>
-<span class="doccomment">//! [`rustdoc`](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html). This includes defining</span>
-<span class="doccomment">//! item-info docboxes, annotating an item&#39;s minimum version, and marking an item to be displayed as</span>
-<span class="doccomment">//! semi-transparent on module lists.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This allows for enhanced documentation, similar to what is done in the standard library with the</span>
-<span class="doccomment">//! [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)</span>
-<span class="doccomment">//! feature and what is available on nightly with the</span>
-<span class="doccomment">//! [`doc_cfg`](https://doc.rust-lang.org/beta/unstable-book/language-features/doc-cfg.html) feature.</span>
-<span class="doccomment">//! However, this crate provides even more customization, allowing for use of custom CSS classes and</span>
-<span class="doccomment">//! text within docboxes.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## Usage</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Defining an Experimental API</span>
-<span class="doccomment">//! Marking an item as experimental (similar to what is done in the standard library through the</span>
-<span class="doccomment">//! [`#[unstable]`](https://rustc-dev-guide.rust-lang.org/stability.html#unstable) attribute) can be</span>
-<span class="doccomment">//! done as follows:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! /// This is an experimental API.</span>
-<span class="doccomment">//! ///</span>
-<span class="doccomment">//! /// The docbox will indicate the function is experimental. It will also appear semi-transparent on</span>
-<span class="doccomment">//! /// module lists.</span>
-<span class="doccomment">//! #[doc_item::docbox(content=&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">//! #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">//! #[doc_item::semi_transparent]</span>
-<span class="doccomment">//! pub fn foo() {}</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Creating Custom-Styled Docboxes</span>
-<span class="doccomment">//! You can create your own custom styles to customize the display of docboxes. Define your item&#39;s</span>
-<span class="doccomment">//! docbox as follows:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! /// An item with a custom docbox.</span>
-<span class="doccomment">//! ///</span>
-<span class="doccomment">//! /// The docbox will be a different color.</span>
-<span class="doccomment">//! #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]</span>
-<span class="doccomment">//! #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]</span>
-<span class="doccomment">//! pub fn foo() {}</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Next, create a style definition in a separate HTML file.</span>
-<span class="doccomment">//! ```html</span>
-<span class="doccomment">//! &lt;style&gt;</span>
-<span class="doccomment">//!     .custom {</span>
-<span class="doccomment">//!         background: #c4ffd7;</span>
-<span class="doccomment">//!         border-color: #7bdba1;</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! &lt;/style&gt;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Finally, include the HTML file&#39;s contents in your documentation:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```bash</span>
-<span class="doccomment">//! $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! And instruct [docs.rs](https://docs.rs/) to include the HTML file&#39;s contents as well by adding to your `Cargo.toml`:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [package.metadata.docs.rs]</span>
-<span class="doccomment">//! rustdoc-args = [ &quot;--html-in-header&quot;, &quot;custom.html&quot; ]</span>
-<span class="doccomment">//! ```</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Attributes for item-level documentation customization.
+//!
+//! This crate provides attributes for adding various features to items when they are documented by
+//! [`rustdoc`](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html). This includes defining
+//! item-info docboxes, annotating an item&#39;s minimum version, and marking an item to be displayed as
+//! semi-transparent on module lists.
+//!
+//! This allows for enhanced documentation, similar to what is done in the standard library with the
+//! [`staged_api`](https://doc.rust-lang.org/beta/unstable-book/language-features/staged-api.html)
+//! feature and what is available on nightly with the
+//! [`doc_cfg`](https://doc.rust-lang.org/beta/unstable-book/language-features/doc-cfg.html) feature.
+//! However, this crate provides even more customization, allowing for use of custom CSS classes and
+//! text within docboxes.
+//!
+//! ## Usage
+//!
+//! ### Defining an Experimental API
+//! Marking an item as experimental (similar to what is done in the standard library through the
+//! [`#[unstable]`](https://rustc-dev-guide.rust-lang.org/stability.html#unstable) attribute) can be
+//! done as follows:
+//!
+//! ```
+//! /// This is an experimental API.
+//! ///
+//! /// The docbox will indicate the function is experimental. It will also appear semi-transparent on
+//! /// module lists.
+//! #[doc_item::docbox(content=&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;, class=&quot;unstable&quot;)]
+//! #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]
+//! #[doc_item::semi_transparent]
+//! pub fn foo() {}
+//! ```
+//!
+//! ### Creating Custom-Styled Docboxes
+//! You can create your own custom styles to customize the display of docboxes. Define your item&#39;s
+//! docbox as follows:
+//!
+//! ```
+//! /// An item with a custom docbox.
+//! ///
+//! /// The docbox will be a different color.
+//! #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]
+//! #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]
+//! pub fn foo() {}
+//! ```
+//!
+//! Next, create a style definition in a separate HTML file.
+//! ```html
+//! &lt;style&gt;
+//!     .custom {
+//!         background: #c4ffd7;
+//!         border-color: #7bdba1;
+//!     }
+//! &lt;/style&gt;
+//! ```
+//!
+//! Finally, include the HTML file&#39;s contents in your documentation:
+//!
+//! ```bash
+//! $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+//! ```
+//!
+//! And instruct [docs.rs](https://docs.rs/) to include the HTML file&#39;s contents as well by adding to your `Cargo.toml`:
+//!
+//! ```toml
+//! [package.metadata.docs.rs]
+//! rustdoc-args = [ &quot;--html-in-header&quot;, &quot;custom.html&quot; ]
+//! ```
 
-<span class="attribute">#![<span class="ident">warn</span>(
-    <span class="ident">clippy::cargo</span>,
-    <span class="ident">clippy::nursery</span>,
-    <span class="ident">clippy::pedantic</span>,
-    <span class="ident">unused_qualifications</span>
+</span><span class="attribute">#![warn(
+    clippy::cargo,
+    clippy::nursery,
+    clippy::pedantic,
+    unused_qualifications
 )]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::default_trait_access</span>, <span class="ident">clippy::missing_panics_doc</span>)]</span>
+<span class="attribute">#![allow(clippy::default_trait_access, clippy::missing_panics_doc)]</span>
 
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">proc_macro</span>;
+<span class="kw">extern crate </span>proc_macro;
 
-<span class="kw">use</span> <span class="ident">darling::FromMeta</span>;
-<span class="kw">use</span> <span class="ident">proc_macro</span>::{<span class="ident">token_stream</span>, <span class="ident">TokenStream</span>};
-<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">parse_macro_input</span>, <span class="ident">AttributeArgs</span>};
+<span class="kw">use </span>darling::FromMeta;
+<span class="kw">use </span>proc_macro::{token_stream, TokenStream};
+<span class="kw">use </span>std::str::FromStr;
+<span class="kw">use </span>syn::{parse_macro_input, AttributeArgs};
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">FromMeta</span>)]</span>
-<span class="kw">struct</span> <span class="ident">BoxArgs</span> {
-    <span class="attribute">#[<span class="ident">darling</span>(<span class="ident">default</span>)]</span>
-    <span class="ident">content</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">darling</span>(<span class="ident">default</span>)]</span>
-    <span class="ident">class</span>: <span class="ident">String</span>,
+<span class="attribute">#[derive(FromMeta)]</span>
+<span class="kw">struct </span>BoxArgs {
+    <span class="attribute">#[darling(default)]</span>
+    content: String,
+    <span class="attribute">#[darling(default)]</span>
+    class: String,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">FromMeta</span>)]</span>
-<span class="kw">struct</span> <span class="ident">SinceArgs</span> {
-    <span class="attribute">#[<span class="ident">darling</span>(<span class="ident">default</span>)]</span>
-    <span class="ident">content</span>: <span class="ident">String</span>,
+<span class="attribute">#[derive(FromMeta)]</span>
+<span class="kw">struct </span>SinceArgs {
+    <span class="attribute">#[darling(default)]</span>
+    content: String,
 }
 
-<span class="kw">fn</span> <span class="ident">insert_after_attributes</span>(
-    <span class="ident">result</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream</span>,
-    <span class="ident">value</span>: <span class="ident">TokenStream</span>,
-    <span class="kw-2">mut</span> <span class="ident">item_iter</span>: <span class="ident">token_stream::IntoIter</span>,
+<span class="kw">fn </span>insert_after_attributes(
+    result: <span class="kw-2">&amp;mut </span>TokenStream,
+    value: TokenStream,
+    <span class="kw-2">mut </span>item_iter: token_stream::IntoIter,
 ) {
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) = <span class="ident">item_iter</span>.<span class="ident">next</span>() {
-        <span class="kw">if</span> <span class="ident">token</span>.<span class="ident">to_string</span>() == <span class="string">&quot;#&quot;</span> {
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">token</span>.<span class="ident">into</span>());
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">item_iter</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>().<span class="ident">into</span>());
-        } <span class="kw">else</span> {
-            <span class="ident">result</span>.<span class="ident">extend</span>(<span class="ident">value</span>);
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">token</span>.<span class="ident">into</span>());
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">item_iter</span>.<span class="ident">collect</span>());
+    <span class="kw">while let </span><span class="prelude-val">Some</span>(token) = item_iter.next() {
+        <span class="kw">if </span>token.to_string() == <span class="string">&quot;#&quot; </span>{
+            Extend::extend::&lt;TokenStream&gt;(result, token.into());
+            Extend::extend::&lt;TokenStream&gt;(result, item_iter.next().unwrap().into());
+        } <span class="kw">else </span>{
+            result.extend(value);
+            Extend::extend::&lt;TokenStream&gt;(result, token.into());
+            Extend::extend::&lt;TokenStream&gt;(result, item_iter.collect());
             <span class="kw">return</span>;
         }
     }
-    <span class="comment">// Catch-all, just in case there are no tokens after the attributes.</span>
-    <span class="ident">result</span>.<span class="ident">extend</span>(<span class="ident">value</span>);
+    <span class="comment">// Catch-all, just in case there are no tokens after the attributes.
+    </span>result.extend(value);
 }
 
-<span class="kw">fn</span> <span class="ident">prepend_to_doc</span>(<span class="ident">result</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">item_iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">token_stream::IntoIter</span>) {
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) = <span class="ident">item_iter</span>.<span class="ident">next</span>() {
-        <span class="kw">if</span> <span class="ident">token</span>.<span class="ident">to_string</span>() == <span class="string">&quot;#&quot;</span> {
-            <span class="kw">let</span> <span class="ident">attribute</span> = <span class="ident">item_iter</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>().<span class="ident">to_string</span>();
-            <span class="kw">if</span> <span class="ident">attribute</span>.<span class="ident">starts_with</span>(<span class="string">&quot;[doc =&quot;</span>) {
-                <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">token</span>.<span class="ident">into</span>());
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">old_doc</span> = <span class="ident">attribute</span>
-                    .<span class="ident">splitn</span>(<span class="number">2</span>, <span class="string">&#39;\&quot;&#39;</span>)
-                    .<span class="ident">skip</span>(<span class="number">1</span>)
-                    .<span class="ident">collect</span>::&lt;<span class="ident">String</span>&gt;()
-                    .<span class="ident">trim_start</span>()
-                    .<span class="ident">trim_end_matches</span>(<span class="string">&quot;\&quot;]&quot;</span>)
-                    .<span class="ident">to_owned</span>();
-                <span class="kw">if</span> !<span class="ident">old_doc</span>.<span class="ident">starts_with</span>(<span class="string">&#39;&lt;&#39;</span>) {
-                    <span class="ident">old_doc</span> = <span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, <span class="ident">old_doc</span>);
+<span class="kw">fn </span>prepend_to_doc(result: <span class="kw-2">&amp;mut </span>TokenStream, value: <span class="kw-2">&amp;</span>str, item_iter: <span class="kw-2">&amp;mut </span>token_stream::IntoIter) {
+    <span class="kw">while let </span><span class="prelude-val">Some</span>(token) = item_iter.next() {
+        <span class="kw">if </span>token.to_string() == <span class="string">&quot;#&quot; </span>{
+            <span class="kw">let </span>attribute = item_iter.next().unwrap().to_string();
+            <span class="kw">if </span>attribute.starts_with(<span class="string">&quot;[doc =&quot;</span>) {
+                Extend::extend::&lt;TokenStream&gt;(result, token.into());
+                <span class="kw">let </span><span class="kw-2">mut </span>old_doc = attribute
+                    .splitn(<span class="number">2</span>, <span class="string">&#39;\&quot;&#39;</span>)
+                    .skip(<span class="number">1</span>)
+                    .collect::&lt;String&gt;()
+                    .trim_start()
+                    .trim_end_matches(<span class="string">&quot;\&quot;]&quot;</span>)
+                    .to_owned();
+                <span class="kw">if </span>!old_doc.starts_with(<span class="string">&#39;&lt;&#39;</span>) {
+                    old_doc = <span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, old_doc);
                 }
-                <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(
-                    <span class="ident">result</span>,
-                    <span class="ident">TokenStream::from_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;[doc = \&quot;{}{}\&quot;]&quot;</span>, <span class="ident">value</span>, <span class="ident">old_doc</span>)).<span class="ident">unwrap</span>(),
+                Extend::extend::&lt;TokenStream&gt;(
+                    result,
+                    TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;[doc = \&quot;{}{}\&quot;]&quot;</span>, value, old_doc)).unwrap(),
                 );
                 <span class="kw">return</span>;
             }
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">token</span>.<span class="ident">into</span>());
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">TokenStream::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">attribute</span>).<span class="ident">unwrap</span>());
-        } <span class="kw">else</span> {
-            <span class="comment">// There are no more attributes, and therefore no more docs.</span>
-            <span class="ident">result</span>.<span class="ident">extend</span>(<span class="ident">TokenStream::from_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;#[doc = \&quot;{}\&quot;]&quot;</span>, <span class="ident">value</span>)).<span class="ident">unwrap</span>());
-            <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="ident">result</span>, <span class="ident">token</span>.<span class="ident">into</span>());
+            Extend::extend::&lt;TokenStream&gt;(result, token.into());
+            Extend::extend::&lt;TokenStream&gt;(result, TokenStream::from_str(<span class="kw-2">&amp;</span>attribute).unwrap());
+        } <span class="kw">else </span>{
+            <span class="comment">// There are no more attributes, and therefore no more docs.
+            </span>result.extend(TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;#[doc = \&quot;{}\&quot;]&quot;</span>, value)).unwrap());
+            Extend::extend::&lt;TokenStream&gt;(result, token.into());
             <span class="kw">return</span>;
         }
     }
 }
 
-<span class="doccomment">/// Adds a docbox to the item&#39;s item-info.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A docbox is defined to be a box below the item&#39;s definition within documentation, alerting the</span>
-<span class="doccomment">/// user to important information about the item. A common use case is to alert about an</span>
-<span class="doccomment">/// experimental item. This can be done as follows:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::docbox(content=&quot;This API is experimental&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Custom Styles</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The docbox can be styled using the `class` parameter. The class corresponds to a CSS class in</span>
-<span class="doccomment">/// the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a predefined</span>
-<span class="doccomment">/// class by rustdoc. Other predefined classes include `&quot;portability&quot;` and `&quot;deprecated&quot;`. If</span>
-<span class="doccomment">/// different style is desired, a custom class can be provided using the `--html-in-header` rustdoc</span>
-<span class="doccomment">/// flag.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Provide a custom class like this:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Define the custom class in a separate file, potentially named `custom.html`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```html</span>
-<span class="doccomment">/// &lt;style&gt;</span>
-<span class="doccomment">///     .custom {</span>
-<span class="doccomment">///         background: #f5ffd6;</span>
-<span class="doccomment">///         border-color: #b9ff00;</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// &lt;/style&gt;</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// And finally build the documentation with the custom docbox class.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```bash</span>
-<span class="doccomment">/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Multiple Docboxes</span>
-<span class="doccomment">/// Multiple docbox attributes may be used on a single item. When generating the documentation,</span>
-<span class="doccomment">/// `doc_item` will insert the docboxes in the *reverse* order that they are provided in. For</span>
-<span class="doccomment">/// example:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::docbox(content=&quot;This box will display second&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">/// #[doc_item::docbox(content=&quot;This box will display first&quot;, class=&quot;portability&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// will result in the `&quot;portability&quot;` docbox being displayed above the `&quot;unstable&quot;` docbox.</span>
-<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">docbox</span>(<span class="ident">attr</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">box_args</span> = <span class="kw">match</span> <span class="ident">BoxArgs::from_list</span>(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(<span class="ident">attr</span> <span class="kw">as</span> <span class="ident">AttributeArgs</span>)) {
-        <span class="prelude-val">Ok</span>(<span class="ident">args</span>) =&gt; <span class="ident">args</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-            <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">write_errors</span>().<span class="ident">into</span>();
+<span class="doccomment">/// Adds a docbox to the item&#39;s item-info.
+///
+/// A docbox is defined to be a box below the item&#39;s definition within documentation, alerting the
+/// user to important information about the item. A common use case is to alert about an
+/// experimental item. This can be done as follows:
+///
+/// ```
+/// #[doc_item::docbox(content=&quot;This API is experimental&quot;, class=&quot;unstable&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// # Custom Styles
+///
+/// The docbox can be styled using the `class` parameter. The class corresponds to a CSS class in
+/// the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a predefined
+/// class by rustdoc. Other predefined classes include `&quot;portability&quot;` and `&quot;deprecated&quot;`. If
+/// different style is desired, a custom class can be provided using the `--html-in-header` rustdoc
+/// flag.
+///
+/// Provide a custom class like this:
+///
+/// ```
+/// #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// Define the custom class in a separate file, potentially named `custom.html`.
+///
+/// ```html
+/// &lt;style&gt;
+///     .custom {
+///         background: #f5ffd6;
+///         border-color: #b9ff00;
+///     }
+/// &lt;/style&gt;
+/// ```
+///
+/// And finally build the documentation with the custom docbox class.
+///
+/// ```bash
+/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+/// ```
+///
+/// # Multiple Docboxes
+/// Multiple docbox attributes may be used on a single item. When generating the documentation,
+/// `doc_item` will insert the docboxes in the *reverse* order that they are provided in. For
+/// example:
+///
+/// ```
+/// #[doc_item::docbox(content=&quot;This box will display second&quot;, class=&quot;unstable&quot;)]
+/// #[doc_item::docbox(content=&quot;This box will display first&quot;, class=&quot;portability&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// will result in the `&quot;portability&quot;` docbox being displayed above the `&quot;unstable&quot;` docbox.
+</span><span class="attribute">#[proc_macro_attribute]</span>
+<span class="kw">pub fn </span>docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>box_args = <span class="kw">match </span>BoxArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
+        <span class="prelude-val">Ok</span>(args) =&gt; args,
+        <span class="prelude-val">Err</span>(err) =&gt; {
+            <span class="kw">return </span>err.write_errors().into();
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> = <span class="ident">TokenStream::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>result = TokenStream::new();
 
-    <span class="comment">// Insert the box after all other attributes.</span>
-    <span class="ident">insert_after_attributes</span>(
-        <span class="kw-2">&amp;mut</span> <span class="ident">result</span>,
-        <span class="ident">TokenStream::from_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
+    <span class="comment">// Insert the box after all other attributes.
+    </span>insert_after_attributes(
+        <span class="kw-2">&amp;mut </span>result,
+        TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
             <span class="string">&quot;#[doc = \&quot;\n &lt;div class=&#39;item-info&#39;&gt;&lt;div class=&#39;stab {}&#39;&gt;{}&lt;/div&gt;&lt;/div&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains(&#39;docblock-short&#39;)){{box.remove();}}else if(box.parentElement.parentElement.classList.contains(&#39;top-doc&#39;)){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();&lt;/script&gt;\&quot;]&quot;</span>,
-            <span class="ident">box_args</span>.<span class="ident">class</span>,
-            <span class="ident">box_args</span>.<span class="ident">content</span>
+            box_args.class,
+            box_args.content
         ))
-        .<span class="ident">unwrap</span>(),
-        <span class="ident">item</span>.<span class="ident">into_iter</span>()
+        .unwrap(),
+        item.into_iter()
     );
 
-    <span class="ident">result</span>
+    result
 }
 
-<span class="doccomment">/// Adds a short docbox to the item in module lists.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A short docbox is defined to be a box immediately before the item&#39;s short documentation in</span>
-<span class="doccomment">/// module lists, alerting the user to important information about the item. A common use case is to</span>
-<span class="doccomment">/// alert about an experimental item. This can be done as follows:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It is good practice to keep the `content` concise, as short docblocks have limited space. When</span>
-<span class="doccomment">/// used with a [`macro@docbox`] attribute, the `short_docbox`&#39;s content should be an abbreviated form of</span>
-<span class="doccomment">/// the `docbox`&#39;s content.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Custom Styles</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The short docbox can be styled using the `class` parameter. The class corresponds to a CSS class</span>
-<span class="doccomment">/// in the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a</span>
-<span class="doccomment">/// predefined class by rustdoc. Other predefined classes include `&quot;portability&quot;` and</span>
-<span class="doccomment">/// `&quot;deprecated&quot;`. If different style is desired, a custom class can be provided using the</span>
-<span class="doccomment">/// `--html-in-header` rustdoc flag.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Provide a custom class like this:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Define the custom class in a separate file, potentially named `custom.html`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```html</span>
-<span class="doccomment">/// &lt;style&gt;</span>
-<span class="doccomment">///     .custom {</span>
-<span class="doccomment">///         background: #f5ffd6;</span>
-<span class="doccomment">///         border-color: #b9ff00;</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// &lt;/style&gt;</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// And finally build the documentation with the custom docbox class.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```bash</span>
-<span class="doccomment">/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Multiple Short Docboxes</span>
-<span class="doccomment">/// Multiple short docbox attributes may be used on a single item. When generating the</span>
-<span class="doccomment">/// documentation, `doc_item` will insert the docboxes in the *reverse* order that they are provided</span>
-<span class="doccomment">/// in. For example:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::short_docbox(content=&quot;Second&quot;, class=&quot;unstable&quot;)]</span>
-<span class="doccomment">/// #[doc_item::short_docbox(content=&quot;First&quot;, class=&quot;portability&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// will result in the `&quot;portability&quot;` short docbox being displayed to the left of the `&quot;unstable&quot;`</span>
-<span class="doccomment">/// short docbox.</span>
-<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">short_docbox</span>(<span class="ident">attr</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">box_args</span> = <span class="kw">match</span> <span class="ident">BoxArgs::from_list</span>(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(<span class="ident">attr</span> <span class="kw">as</span> <span class="ident">AttributeArgs</span>)) {
-        <span class="prelude-val">Ok</span>(<span class="ident">args</span>) =&gt; <span class="ident">args</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-            <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">write_errors</span>().<span class="ident">into</span>();
+<span class="doccomment">/// Adds a short docbox to the item in module lists.
+///
+/// A short docbox is defined to be a box immediately before the item&#39;s short documentation in
+/// module lists, alerting the user to important information about the item. A common use case is to
+/// alert about an experimental item. This can be done as follows:
+///
+/// ```
+/// #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// It is good practice to keep the `content` concise, as short docblocks have limited space. When
+/// used with a [`macro@docbox`] attribute, the `short_docbox`&#39;s content should be an abbreviated form of
+/// the `docbox`&#39;s content.
+///
+/// # Custom Styles
+///
+/// The short docbox can be styled using the `class` parameter. The class corresponds to a CSS class
+/// in the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a
+/// predefined class by rustdoc. Other predefined classes include `&quot;portability&quot;` and
+/// `&quot;deprecated&quot;`. If different style is desired, a custom class can be provided using the
+/// `--html-in-header` rustdoc flag.
+///
+/// Provide a custom class like this:
+///
+/// ```
+/// #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// Define the custom class in a separate file, potentially named `custom.html`.
+///
+/// ```html
+/// &lt;style&gt;
+///     .custom {
+///         background: #f5ffd6;
+///         border-color: #b9ff00;
+///     }
+/// &lt;/style&gt;
+/// ```
+///
+/// And finally build the documentation with the custom docbox class.
+///
+/// ```bash
+/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+/// ```
+///
+/// # Multiple Short Docboxes
+/// Multiple short docbox attributes may be used on a single item. When generating the
+/// documentation, `doc_item` will insert the docboxes in the *reverse* order that they are provided
+/// in. For example:
+///
+/// ```
+/// #[doc_item::short_docbox(content=&quot;Second&quot;, class=&quot;unstable&quot;)]
+/// #[doc_item::short_docbox(content=&quot;First&quot;, class=&quot;portability&quot;)]
+/// pub fn foo() {}
+/// ```
+///
+/// will result in the `&quot;portability&quot;` short docbox being displayed to the left of the `&quot;unstable&quot;`
+/// short docbox.
+</span><span class="attribute">#[proc_macro_attribute]</span>
+<span class="kw">pub fn </span>short_docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>box_args = <span class="kw">match </span>BoxArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
+        <span class="prelude-val">Ok</span>(args) =&gt; args,
+        <span class="prelude-val">Err</span>(err) =&gt; {
+            <span class="kw">return </span>err.write_errors().into();
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> = <span class="ident">TokenStream::new</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">item_iter</span> = <span class="ident">item</span>.<span class="ident">clone</span>().<span class="ident">into_iter</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>result = TokenStream::new();
+    <span class="kw">let </span><span class="kw-2">mut </span>item_iter = item.clone().into_iter();
 
-    <span class="comment">// Insert the short box.</span>
-    <span class="kw">let</span> <span class="ident">short_docbox</span> = <span class="kw-2">&amp;</span><span class="macro">format!</span>(
+    <span class="comment">// Insert the short box.
+    </span><span class="kw">let </span>short_docbox = <span class="kw-2">&amp;</span><span class="macro">format!</span>(
         <span class="string">&quot;&lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class=&#39;stab {}&#39;&gt;{}&lt;/span&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName(&#39;module-item&#39;);if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();&lt;/script&gt;&quot;</span>,
-        <span class="ident">box_args</span>.<span class="ident">class</span>, <span class="ident">box_args</span>.<span class="ident">content</span>
+        box_args.class, box_args.content
     );
-    <span class="ident">prepend_to_doc</span>(<span class="kw-2">&amp;mut</span> <span class="ident">result</span>, <span class="ident">short_docbox</span>, <span class="kw-2">&amp;mut</span> <span class="ident">item_iter</span>);
+    prepend_to_doc(<span class="kw-2">&amp;mut </span>result, short_docbox, <span class="kw-2">&amp;mut </span>item_iter);
         
-    <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="kw-2">&amp;mut</span> <span class="ident">result</span>, <span class="ident">item_iter</span>.<span class="ident">collect</span>());
+    Extend::extend::&lt;TokenStream&gt;(<span class="kw-2">&amp;mut </span>result, item_iter.collect());
 
-    <span class="ident">result</span>
+    result
 }
 
-<span class="doccomment">/// Makes an item semi-transparent in module lists.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is commonly used to denote an item that is unstable and could potentially change in the</span>
-<span class="doccomment">/// future, indicating to users that it is not very reliable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// To make an item semi-transparent, add this attribute before the item as follows:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::semi_transparent]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">semi_transparent</span>(<span class="ident">_attr</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> = <span class="ident">TokenStream::new</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">item_iter</span> = <span class="ident">item</span>.<span class="ident">into_iter</span>();
+<span class="doccomment">/// Makes an item semi-transparent in module lists.
+///
+/// This is commonly used to denote an item that is unstable and could potentially change in the
+/// future, indicating to users that it is not very reliable.
+///
+/// To make an item semi-transparent, add this attribute before the item as follows:
+///
+/// ```
+/// #[doc_item::semi_transparent]
+/// pub fn foo() {}
+/// ```
+</span><span class="attribute">#[proc_macro_attribute]</span>
+<span class="kw">pub fn </span>semi_transparent(_attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = TokenStream::new();
+    <span class="kw">let </span><span class="kw-2">mut </span>item_iter = item.into_iter();
 
-    <span class="comment">// Insert script to gray the text.</span>
-    <span class="ident">prepend_to_doc</span>(
-        <span class="kw-2">&amp;mut</span> <span class="ident">result</span>,
+    <span class="comment">// Insert script to gray the text.
+    </span>prepend_to_doc(
+        <span class="kw-2">&amp;mut </span>result,
         <span class="string">&quot;&lt;script&gt;var module_items = document.currentScript.parentElement.parentElement.getElementsByClassName(&#39;module-item&#39;); if(module_items.length != 0){{module_items[0].classList.add(&#39;unstable&#39;);}}document.currentScript.remove();&lt;/script&gt;&quot;</span>,
-        <span class="kw-2">&amp;mut</span> <span class="ident">item_iter</span>
+        <span class="kw-2">&amp;mut </span>item_iter
     );
 
-    <span class="ident">Extend::extend</span>::&lt;<span class="ident">TokenStream</span>&gt;(<span class="kw-2">&amp;mut</span> <span class="ident">result</span>, <span class="ident">item_iter</span>.<span class="ident">collect</span>());
+    Extend::extend::&lt;TokenStream&gt;(<span class="kw-2">&amp;mut </span>result, item_iter.collect());
 
-    <span class="ident">result</span>
+    result
 }
 
-<span class="doccomment">/// Adds a minimal version to an item.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is meant to indicate that an item has been available since a certain version. The value</span>
-<span class="doccomment">/// is placed to the right of the item&#39;s definition in light text.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The value is styled the same as the since values used in the standard library&#39;s documentation.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// #[doc_item::since(content=&quot;1.2.0&quot;)]</span>
-<span class="doccomment">/// pub fn foo() {}</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">since</span>(<span class="ident">attr</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">since_args</span> = <span class="kw">match</span> <span class="ident">SinceArgs::from_list</span>(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(<span class="ident">attr</span> <span class="kw">as</span> <span class="ident">AttributeArgs</span>)) {
-        <span class="prelude-val">Ok</span>(<span class="ident">args</span>) =&gt; <span class="ident">args</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-            <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">write_errors</span>().<span class="ident">into</span>();
+<span class="doccomment">/// Adds a minimal version to an item.
+///
+/// This is meant to indicate that an item has been available since a certain version. The value
+/// is placed to the right of the item&#39;s definition in light text.
+///
+/// The value is styled the same as the since values used in the standard library&#39;s documentation.
+///
+/// ```
+/// #[doc_item::since(content=&quot;1.2.0&quot;)]
+/// pub fn foo() {}
+/// ```
+</span><span class="attribute">#[proc_macro_attribute]</span>
+<span class="kw">pub fn </span>since(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>since_args = <span class="kw">match </span>SinceArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
+        <span class="prelude-val">Ok</span>(args) =&gt; args,
+        <span class="prelude-val">Err</span>(err) =&gt; {
+            <span class="kw">return </span>err.write_errors().into();
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> = <span class="ident">TokenStream::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>result = TokenStream::new();
 
-    <span class="ident">insert_after_attributes</span>(
-        <span class="kw-2">&amp;mut</span> <span class="ident">result</span>,
-        <span class="ident">TokenStream::from_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
+    insert_after_attributes(
+        <span class="kw-2">&amp;mut </span>result,
+        TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
             <span class="string">&quot;#[doc = \&quot; &lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class=&#39;since&#39;&gt;{}&lt;/span&gt;&lt;script&gt;var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains(&#39;docblock-short&#39;)){{since.remove();}}else if(since.parentElement.parentElement.classList.contains(&#39;top-doc&#39;)){{var out_of_band = since.parentElement.parentElement.parentElement.getElementsByClassName(&#39;out-of-band&#39;)[0];out_of_band.prepend(&#39; · &#39;);out_of_band.prepend(since);}}else{{var rightside = since.parentElement.parentElement.getElementsByClassName(&#39;rightside&#39;)[0];rightside.prepend(&#39; · &#39;);rightside.prepend(since);}}document.currentScript.remove();&lt;/script&gt;\&quot;]&quot;</span>,
-            <span class="ident">since_args</span>.<span class="ident">content</span>
+            since_args.content
         ))
-        .<span class="ident">unwrap</span>(),
-        <span class="ident">item</span>.<span class="ident">into_iter</span>()
+        .unwrap(),
+        item.into_iter()
     );
 
-    <span class="ident">result</span>
+    result
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (f22819bcc 2022-08-12)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (801821d15 2022-08-14)" ></div></body></html>
