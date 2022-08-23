@@ -448,28 +448,28 @@
     clippy::nursery,
     clippy::pedantic,
     unused_qualifications
-)]</span>
-<span class="attribute">#![allow(clippy::default_trait_access, clippy::missing_panics_doc)]</span>
+)]
+#![allow(clippy::default_trait_access, clippy::missing_panics_doc)]
 
-<span class="kw">extern crate </span>proc_macro;
+</span><span class="kw">extern crate </span>proc_macro;
 
 <span class="kw">use </span>darling::FromMeta;
 <span class="kw">use </span>proc_macro::{token_stream, TokenStream};
 <span class="kw">use </span>std::str::FromStr;
 <span class="kw">use </span>syn::{parse_macro_input, AttributeArgs};
 
-<span class="attribute">#[derive(FromMeta)]</span>
-<span class="kw">struct </span>BoxArgs {
-    <span class="attribute">#[darling(default)]</span>
-    content: String,
-    <span class="attribute">#[darling(default)]</span>
-    class: String,
+<span class="attribute">#[derive(FromMeta)]
+</span><span class="kw">struct </span>BoxArgs {
+    <span class="attribute">#[darling(default)]
+    </span>content: String,
+    <span class="attribute">#[darling(default)]
+    </span>class: String,
 }
 
-<span class="attribute">#[derive(FromMeta)]</span>
-<span class="kw">struct </span>SinceArgs {
-    <span class="attribute">#[darling(default)]</span>
-    content: String,
+<span class="attribute">#[derive(FromMeta)]
+</span><span class="kw">struct </span>SinceArgs {
+    <span class="attribute">#[darling(default)]
+    </span>content: String,
 }
 
 <span class="kw">fn </span>insert_after_attributes(
@@ -580,8 +580,8 @@
 /// ```
 ///
 /// will result in the `&quot;portability&quot;` docbox being displayed above the `&quot;unstable&quot;` docbox.
-</span><span class="attribute">#[proc_macro_attribute]</span>
-<span class="kw">pub fn </span>docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+</span><span class="attribute">#[proc_macro_attribute]
+</span><span class="kw">pub fn </span>docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span>box_args = <span class="kw">match </span>BoxArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
         <span class="prelude-val">Ok</span>(args) =&gt; args,
         <span class="prelude-val">Err</span>(err) =&gt; {
@@ -666,8 +666,8 @@
 ///
 /// will result in the `&quot;portability&quot;` short docbox being displayed to the left of the `&quot;unstable&quot;`
 /// short docbox.
-</span><span class="attribute">#[proc_macro_attribute]</span>
-<span class="kw">pub fn </span>short_docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+</span><span class="attribute">#[proc_macro_attribute]
+</span><span class="kw">pub fn </span>short_docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span>box_args = <span class="kw">match </span>BoxArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
         <span class="prelude-val">Ok</span>(args) =&gt; args,
         <span class="prelude-val">Err</span>(err) =&gt; {
@@ -701,8 +701,8 @@
 /// #[doc_item::semi_transparent]
 /// pub fn foo() {}
 /// ```
-</span><span class="attribute">#[proc_macro_attribute]</span>
-<span class="kw">pub fn </span>semi_transparent(_attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+</span><span class="attribute">#[proc_macro_attribute]
+</span><span class="kw">pub fn </span>semi_transparent(_attr: TokenStream, item: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span><span class="kw-2">mut </span>result = TokenStream::new();
     <span class="kw">let </span><span class="kw-2">mut </span>item_iter = item.into_iter();
 
@@ -729,8 +729,8 @@
 /// #[doc_item::since(content=&quot;1.2.0&quot;)]
 /// pub fn foo() {}
 /// ```
-</span><span class="attribute">#[proc_macro_attribute]</span>
-<span class="kw">pub fn </span>since(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+</span><span class="attribute">#[proc_macro_attribute]
+</span><span class="kw">pub fn </span>since(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span>since_args = <span class="kw">match </span>SinceArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
         <span class="prelude-val">Ok</span>(args) =&gt; args,
         <span class="prelude-val">Err</span>(err) =&gt; {
@@ -753,4 +753,4 @@
     result
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (878aef79d 2022-08-20)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="doc_item" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (015a824f2 2022-08-22)" ></div></body></html>
