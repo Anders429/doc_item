@@ -21,9 +21,11 @@ flag.</p>
         background: #f5ffd6;
         border-color: #b9ff00;
     }
-&lt;/style&gt;</code></pre></div>
+&lt;/style&gt;
+</code></pre></div>
 <p>And finally build the documentation with the custom docbox class.</p>
-<div class="example-wrap"><pre class="language-bash"><code>$ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open</code></pre></div><h2 id="multiple-docboxes"><a href="#multiple-docboxes">Multiple Docboxes</a></h2>
+<div class="example-wrap"><pre class="language-bash"><code>$ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+</code></pre></div><h2 id="multiple-docboxes"><a href="#multiple-docboxes">Multiple Docboxes</a></h2>
 <p>Multiple docbox attributes may be used on a single item. When generating the documentation,
 <code>doc_item</code> will insert the docboxes in the <em>reverse</em> order that they are provided in. For
 example:</p>
@@ -32,4 +34,4 @@ example:</p>
 #[doc_item::docbox(content=<span class="string">&quot;This box will display first&quot;</span>, class=<span class="string">&quot;portability&quot;</span>)]
 </span><span class="kw">pub fn </span>foo() {}</code></pre></div>
 <p>will result in the <code>&quot;portability&quot;</code> docbox being displayed above the <code>&quot;unstable&quot;</code> docbox.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="doc_item" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (c6fcdb690 2022-12-10)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="doc_item" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (bdb07a8ec 2022-12-11)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
