@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c67e44d78ab2db17.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="doc_item" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (0e2dac837 2023-12-04)" data-channel="nightly" data-search-js="search-5a66c239c06b3a66.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c67e44d78ab2db17.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="doc_item" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (e9013ac0e 2023-12-05)" data-channel="nightly" data-search-js="search-5a66c239c06b3a66.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -379,7 +379,7 @@
 //!
 //! This crate provides attributes for adding various features to items when they are documented by
 //! [`rustdoc`](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html). This includes defining
-//! item-info docboxes, annotating an item&#39;s minimum version, and marking an item to be displayed as
+//! item-info docboxes, annotating an item's minimum version, and marking an item to be displayed as
 //! semi-transparent on module lists.
 //!
 //! This allows for enhanced documentation, similar to what is done in the standard library with the
@@ -401,22 +401,22 @@
 //! ///
 //! /// The docbox will indicate the function is experimental. It will also appear semi-transparent on
 //! /// module lists.
-//! #[doc_item::docbox(content=&quot;&lt;span class=&#39;emoji&#39;&gt;🔬&lt;/span&gt; This is an experimental API.&quot;, class=&quot;unstable&quot;)]
-//! #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]
+//! #[doc_item::docbox(content="&lt;span class='emoji'&gt;🔬&lt;/span&gt; This is an experimental API.", class="unstable")]
+//! #[doc_item::short_docbox(content="Experimental", class="unstable")]
 //! #[doc_item::semi_transparent]
 //! pub fn foo() {}
 //! ```
 //!
 //! ### Creating Custom-Styled Docboxes
-//! You can create your own custom styles to customize the display of docboxes. Define your item&#39;s
+//! You can create your own custom styles to customize the display of docboxes. Define your item's
 //! docbox as follows:
 //!
 //! ```
 //! /// An item with a custom docbox.
 //! ///
 //! /// The docbox will be a different color.
-//! #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]
-//! #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]
+//! #[doc_item::docbox(content="A custom docbox", class="custom")]
+//! #[doc_item::short_docbox(content="Custom", class="custom")]
 //! pub fn foo() {}
 //! ```
 //!
@@ -430,17 +430,17 @@
 //! &lt;/style&gt;
 //! ```
 //!
-//! Finally, include the HTML file&#39;s contents in your documentation:
+//! Finally, include the HTML file's contents in your documentation:
 //!
 //! ```bash
-//! $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+//! $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
 //! ```
 //!
-//! And instruct [docs.rs](https://docs.rs/) to include the HTML file&#39;s contents as well by adding to your `Cargo.toml`:
+//! And instruct [docs.rs](https://docs.rs/) to include the HTML file's contents as well by adding to your `Cargo.toml`:
 //!
 //! ```toml
 //! [package.metadata.docs.rs]
-//! rustdoc-args = [ &quot;--html-in-header&quot;, &quot;custom.html&quot; ]
+//! rustdoc-args = [ "--html-in-header", "custom.html" ]
 //! ```
 
 </span><span class="attr">#![warn(
@@ -478,7 +478,7 @@
     <span class="kw-2">mut </span>item_iter: token_stream::IntoIter,
 ) {
     <span class="kw">while let </span><span class="prelude-val">Some</span>(token) = item_iter.next() {
-        <span class="kw">if </span>token.to_string() == <span class="string">&quot;#&quot; </span>{
+        <span class="kw">if </span>token.to_string() == <span class="string">"#" </span>{
             Extend::extend::&lt;TokenStream&gt;(result, token.into());
             Extend::extend::&lt;TokenStream&gt;(result, item_iter.next().unwrap().into());
         } <span class="kw">else </span>{
@@ -494,23 +494,23 @@
 
 <span class="kw">fn </span>prepend_to_doc(result: <span class="kw-2">&amp;mut </span>TokenStream, value: <span class="kw-2">&amp;</span>str, item_iter: <span class="kw-2">&amp;mut </span>token_stream::IntoIter) {
     <span class="kw">while let </span><span class="prelude-val">Some</span>(token) = item_iter.next() {
-        <span class="kw">if </span>token.to_string() == <span class="string">&quot;#&quot; </span>{
+        <span class="kw">if </span>token.to_string() == <span class="string">"#" </span>{
             <span class="kw">let </span>attribute = item_iter.next().unwrap().to_string();
-            <span class="kw">if </span>attribute.starts_with(<span class="string">&quot;[doc =&quot;</span>) {
+            <span class="kw">if </span>attribute.starts_with(<span class="string">"[doc ="</span>) {
                 Extend::extend::&lt;TokenStream&gt;(result, token.into());
                 <span class="kw">let </span><span class="kw-2">mut </span>old_doc = attribute
-                    .splitn(<span class="number">2</span>, <span class="string">&#39;\&quot;&#39;</span>)
+                    .splitn(<span class="number">2</span>, <span class="string">'\"'</span>)
                     .skip(<span class="number">1</span>)
                     .collect::&lt;String&gt;()
                     .trim_start()
-                    .trim_end_matches(<span class="string">&quot;\&quot;]&quot;</span>)
+                    .trim_end_matches(<span class="string">"\"]"</span>)
                     .to_owned();
-                <span class="kw">if </span>!old_doc.starts_with(<span class="string">&#39;&lt;&#39;</span>) {
-                    old_doc = <span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, old_doc);
+                <span class="kw">if </span>!old_doc.starts_with(<span class="string">'&lt;'</span>) {
+                    old_doc = <span class="macro">format!</span>(<span class="string">"&lt;p&gt;{}&lt;/p&gt;"</span>, old_doc);
                 }
                 Extend::extend::&lt;TokenStream&gt;(
                     result,
-                    TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;[doc = \&quot;{}{}\&quot;]&quot;</span>, value, old_doc)).unwrap(),
+                    TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"[doc = \"{}{}\"]"</span>, value, old_doc)).unwrap(),
                 );
                 <span class="kw">return</span>;
             }
@@ -518,36 +518,36 @@
             Extend::extend::&lt;TokenStream&gt;(result, TokenStream::from_str(<span class="kw-2">&amp;</span>attribute).unwrap());
         } <span class="kw">else </span>{
             <span class="comment">// There are no more attributes, and therefore no more docs.
-            </span>result.extend(TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;#[doc = \&quot;{}\&quot;]&quot;</span>, value)).unwrap());
+            </span>result.extend(TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"#[doc = \"{}\"]"</span>, value)).unwrap());
             Extend::extend::&lt;TokenStream&gt;(result, token.into());
             <span class="kw">return</span>;
         }
     }
 }
 
-<span class="doccomment">/// Adds a docbox to the item&#39;s item-info.
+<span class="doccomment">/// Adds a docbox to the item's item-info.
 ///
-/// A docbox is defined to be a box below the item&#39;s definition within documentation, alerting the
+/// A docbox is defined to be a box below the item's definition within documentation, alerting the
 /// user to important information about the item. A common use case is to alert about an
 /// experimental item. This can be done as follows:
 ///
 /// ```
-/// #[doc_item::docbox(content=&quot;This API is experimental&quot;, class=&quot;unstable&quot;)]
+/// #[doc_item::docbox(content="This API is experimental", class="unstable")]
 /// pub fn foo() {}
 /// ```
 ///
 /// # Custom Styles
 ///
 /// The docbox can be styled using the `class` parameter. The class corresponds to a CSS class in
-/// the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a predefined
-/// class by rustdoc. Other predefined classes include `&quot;portability&quot;` and `&quot;deprecated&quot;`. If
+/// the generated HTML. In the above example, `"unstable"` was used, as it is already a predefined
+/// class by rustdoc. Other predefined classes include `"portability"` and `"deprecated"`. If
 /// different style is desired, a custom class can be provided using the `--html-in-header` rustdoc
 /// flag.
 ///
 /// Provide a custom class like this:
 ///
 /// ```
-/// #[doc_item::docbox(content=&quot;A custom docbox&quot;, class=&quot;custom&quot;)]
+/// #[doc_item::docbox(content="A custom docbox", class="custom")]
 /// pub fn foo() {}
 /// ```
 ///
@@ -565,7 +565,7 @@
 /// And finally build the documentation with the custom docbox class.
 ///
 /// ```bash
-/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+/// $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
 /// ```
 ///
 /// # Multiple Docboxes
@@ -574,12 +574,12 @@
 /// example:
 ///
 /// ```
-/// #[doc_item::docbox(content=&quot;This box will display second&quot;, class=&quot;unstable&quot;)]
-/// #[doc_item::docbox(content=&quot;This box will display first&quot;, class=&quot;portability&quot;)]
+/// #[doc_item::docbox(content="This box will display second", class="unstable")]
+/// #[doc_item::docbox(content="This box will display first", class="portability")]
 /// pub fn foo() {}
 /// ```
 ///
-/// will result in the `&quot;portability&quot;` docbox being displayed above the `&quot;unstable&quot;` docbox.
+/// will result in the `"portability"` docbox being displayed above the `"unstable"` docbox.
 </span><span class="attr">#[proc_macro_attribute]
 </span><span class="kw">pub fn </span>docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span>box_args = <span class="kw">match </span>BoxArgs::from_list(<span class="kw-2">&amp;</span><span class="macro">parse_macro_input!</span>(attr <span class="kw">as </span>AttributeArgs)) {
@@ -595,7 +595,7 @@
     </span>insert_after_attributes(
         <span class="kw-2">&amp;mut </span>result,
         TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;#[doc = \&quot;\n &lt;div class=&#39;item-info&#39;&gt;&lt;div class=&#39;stab {}&#39;&gt;{}&lt;/div&gt;&lt;/div&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains(&#39;docblock-short&#39;)){{box.remove();}}else if(box.parentElement.parentElement.classList.contains(&#39;top-doc&#39;)){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();&lt;/script&gt;\&quot;]&quot;</span>,
+            <span class="string">"#[doc = \"\n &lt;div class='item-info'&gt;&lt;div class='stab {}'&gt;{}&lt;/div&gt;&lt;/div&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;if(box.parentElement.classList.contains('docblock-short')){{box.remove();}}else if(box.parentElement.parentElement.classList.contains('top-doc')){{box.parentElement.parentElement.before(box);}}else{{box.parentElement.before(box);}}document.currentScript.remove();&lt;/script&gt;\"]"</span>,
             box_args.class,
             box_args.content
         ))
@@ -608,31 +608,31 @@
 
 <span class="doccomment">/// Adds a short docbox to the item in module lists.
 ///
-/// A short docbox is defined to be a box immediately before the item&#39;s short documentation in
+/// A short docbox is defined to be a box immediately before the item's short documentation in
 /// module lists, alerting the user to important information about the item. A common use case is to
 /// alert about an experimental item. This can be done as follows:
 ///
 /// ```
-/// #[doc_item::short_docbox(content=&quot;Experimental&quot;, class=&quot;unstable&quot;)]
+/// #[doc_item::short_docbox(content="Experimental", class="unstable")]
 /// pub fn foo() {}
 /// ```
 ///
 /// It is good practice to keep the `content` concise, as short docblocks have limited space. When
-/// used with a [`macro@docbox`] attribute, the `short_docbox`&#39;s content should be an abbreviated form of
-/// the `docbox`&#39;s content.
+/// used with a [`macro@docbox`] attribute, the `short_docbox`'s content should be an abbreviated form of
+/// the `docbox`'s content.
 ///
 /// # Custom Styles
 ///
 /// The short docbox can be styled using the `class` parameter. The class corresponds to a CSS class
-/// in the generated HTML. In the above example, `&quot;unstable&quot;` was used, as it is already a
-/// predefined class by rustdoc. Other predefined classes include `&quot;portability&quot;` and
-/// `&quot;deprecated&quot;`. If different style is desired, a custom class can be provided using the
+/// in the generated HTML. In the above example, `"unstable"` was used, as it is already a
+/// predefined class by rustdoc. Other predefined classes include `"portability"` and
+/// `"deprecated"`. If different style is desired, a custom class can be provided using the
 /// `--html-in-header` rustdoc flag.
 ///
 /// Provide a custom class like this:
 ///
 /// ```
-/// #[doc_item::short_docbox(content=&quot;Custom&quot;, class=&quot;custom&quot;)]
+/// #[doc_item::short_docbox(content="Custom", class="custom")]
 /// pub fn foo() {}
 /// ```
 ///
@@ -650,7 +650,7 @@
 /// And finally build the documentation with the custom docbox class.
 ///
 /// ```bash
-/// $ RUSTDOCFLAGS=&quot;--html-in-header custom.html&quot; cargo doc --no-deps --open
+/// $ RUSTDOCFLAGS="--html-in-header custom.html" cargo doc --no-deps --open
 /// ```
 ///
 /// # Multiple Short Docboxes
@@ -659,12 +659,12 @@
 /// in. For example:
 ///
 /// ```
-/// #[doc_item::short_docbox(content=&quot;Second&quot;, class=&quot;unstable&quot;)]
-/// #[doc_item::short_docbox(content=&quot;First&quot;, class=&quot;portability&quot;)]
+/// #[doc_item::short_docbox(content="Second", class="unstable")]
+/// #[doc_item::short_docbox(content="First", class="portability")]
 /// pub fn foo() {}
 /// ```
 ///
-/// will result in the `&quot;portability&quot;` short docbox being displayed to the left of the `&quot;unstable&quot;`
+/// will result in the `"portability"` short docbox being displayed to the left of the `"unstable"`
 /// short docbox.
 </span><span class="attr">#[proc_macro_attribute]
 </span><span class="kw">pub fn </span>short_docbox(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
@@ -680,7 +680,7 @@
 
     <span class="comment">// Insert the short box.
     </span><span class="kw">let </span>short_docbox = <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-        <span class="string">&quot;&lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class=&#39;stab {}&#39;&gt;{}&lt;/span&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName(&#39;module-item&#39;);if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();&lt;/script&gt;&quot;</span>,
+        <span class="string">"&lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class='stab {}'&gt;{}&lt;/span&gt;&lt;script&gt;var box = document.currentScript.previousElementSibling;var classes = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item');if (classes.length == 0) {{box.remove();}} else {{classes[0].append(box);}}document.currentScript.remove();&lt;/script&gt;"</span>,
         box_args.class, box_args.content
     );
     prepend_to_doc(<span class="kw-2">&amp;mut </span>result, short_docbox, <span class="kw-2">&amp;mut </span>item_iter);
@@ -709,7 +709,7 @@
     <span class="comment">// Insert script to gray the text.
     </span>prepend_to_doc(
         <span class="kw-2">&amp;mut </span>result,
-        <span class="string">&quot;&lt;script&gt;var module_items = document.currentScript.parentElement.parentElement.getElementsByClassName(&#39;module-item&#39;); if(module_items.length != 0){{module_items[0].classList.add(&#39;unstable&#39;);}}document.currentScript.remove();&lt;/script&gt;&quot;</span>,
+        <span class="string">"&lt;script&gt;var module_items = document.currentScript.parentElement.parentElement.getElementsByClassName('module-item'); if(module_items.length != 0){{module_items[0].classList.add('unstable');}}document.currentScript.remove();&lt;/script&gt;"</span>,
         <span class="kw-2">&amp;mut </span>item_iter
     );
 
@@ -721,12 +721,12 @@
 <span class="doccomment">/// Adds a minimal version to an item.
 ///
 /// This is meant to indicate that an item has been available since a certain version. The value
-/// is placed to the right of the item&#39;s definition in light text.
+/// is placed to the right of the item's definition in light text.
 ///
-/// The value is styled the same as the since values used in the standard library&#39;s documentation.
+/// The value is styled the same as the since values used in the standard library's documentation.
 ///
 /// ```
-/// #[doc_item::since(content=&quot;1.2.0&quot;)]
+/// #[doc_item::since(content="1.2.0")]
 /// pub fn foo() {}
 /// ```
 </span><span class="attr">#[proc_macro_attribute]
@@ -743,7 +743,7 @@
     insert_after_attributes(
         <span class="kw-2">&amp;mut </span>result,
         TokenStream::from_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;#[doc = \&quot; &lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class=&#39;since&#39;&gt;{}&lt;/span&gt;&lt;script&gt;var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains(&#39;docblock-short&#39;)){{since.remove();}}else if(since.parentElement.parentElement.classList.contains(&#39;top-doc&#39;)){{var out_of_band = since.parentElement.parentElement.parentElement.getElementsByClassName(&#39;out-of-band&#39;)[0];out_of_band.prepend(&#39; · &#39;);out_of_band.prepend(since);}}else{{var rightside = since.parentElement.parentElement.getElementsByClassName(&#39;rightside&#39;)[0];rightside.prepend(&#39; · &#39;);rightside.prepend(since);}}document.currentScript.remove();&lt;/script&gt;\&quot;]&quot;</span>,
+            <span class="string">"#[doc = \" &lt;script&gt;document.currentScript.remove();&lt;/script&gt;&lt;span class='since'&gt;{}&lt;/span&gt;&lt;script&gt;var since=document.currentScript.previousElementSibling;if(since.parentElement.classList.contains('docblock-short')){{since.remove();}}else if(since.parentElement.parentElement.classList.contains('top-doc')){{var out_of_band = since.parentElement.parentElement.parentElement.getElementsByClassName('out-of-band')[0];out_of_band.prepend(' · ');out_of_band.prepend(since);}}else{{var rightside = since.parentElement.parentElement.getElementsByClassName('rightside')[0];rightside.prepend(' · ');rightside.prepend(since);}}document.currentScript.remove();&lt;/script&gt;\"]"</span>,
             since_args.content
         ))
         .unwrap(),
