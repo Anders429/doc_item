@@ -1,1 +1,0 @@
-searchState.loadedDescShard("doc_item", 0, "Attributes for item-level documentation customization.\nAdds a docbox to the item’s item-info.\nMakes an item semi-transparent in module lists.\nAdds a short docbox to the item in module lists.\nAdds a minimal version to an item.")

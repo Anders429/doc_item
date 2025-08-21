@@ -1,0 +1,1 @@
+rd_("CmThe docbox will indicate the function is experimental. It \xe2\x80\xa6BbAdds a minimal version to an item.BhAdds a docbox to the item\xe2\x80\x99s item-info.CfAttributes for item-level documentation customization.C`Adds a short docbox to the item in module lists.BoMakes an item semi-transparent in module lists.")
