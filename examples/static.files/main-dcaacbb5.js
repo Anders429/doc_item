@@ -16,7 +16,7 @@
              <a href="${drloChannel}/rustdoc/read-documentation/search.html">here</a>.`,"Prefix searches with a type followed by a colon (e.g., <code>fn:</code>) to \
              restrict the search to a given item kind.","Accepted kinds are: <code>fn</code>, <code>mod</code>, <code>struct</code>, \
              <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, \
-             and <code>const</code>.","Search functions by type signature (e.g., <code>vec -&gt; usize</code> or \
+             and <code>constant</code>.","Search functions by type signature (e.g., <code>vec -&gt; usize</code> or \
              <code>-&gt; vec</code> or <code>String, enum:Cow -&gt; bool</code>)","You can look for items with an exact name by putting double quotes around \
              your request: <code>\"string\"</code>",`Look for functions that accept or return \
               <a href="${drloChannel}/std/primitive.slice.html">slices</a> and \
