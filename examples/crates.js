@@ -1,2 +1,2 @@
-window.ALL_CRATES = ["custom_docbox","doc_item","experimental"];
-//{"start":21,"fragment_lengths":[15,11,15]}
+window.ALL_CRATES = [{"c":"custom_docbox"},{"c":"doc_item"},{"c":"experimental"}];
+//{"start":21,"fragment_lengths":[21,17,21]}
